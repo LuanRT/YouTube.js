@@ -2,7 +2,6 @@ import Feed from '../../core/mixins/Feed.js';
 import ItemSection from '../classes/ItemSection.js';
 import BrowseFeedActions from '../classes/BrowseFeedActions.js';
 import SearchBox from '../classes/SearchBox.js';
-import { InnertubeError } from '../../utils/Utils.js';
 
 import Video from '../classes/Video.js';
 import LockupView from '../classes/LockupView.js';
@@ -14,56 +13,11 @@ import ListItemView from '../classes/ListItemView.js';
 import ConfirmDialogEndpoint from '../classes/endpoints/ConfirmDialogEndpoint.js';
 import ListView from '../classes/ListView.js';
 
-import type { Actions, ApiResponse } from '../../core/index.js';
-import type { IBrowseResponse, RawNode } from '../types/index.js';
-import type { ObservedArray } from '../helpers.js';
+import { InnertubeError } from '../../utils/Utils.js';
 import type NavigationEndpoint from '../classes/NavigationEndpoint.js';
-
-function findRemoveEndpoint(
-  sections: ObservedArray<ItemSection>,
-  video_id: string
-): NavigationEndpoint | undefined {
-  for (const section of sections) {
-    for (const content of section.contents) {
-      if (content.is(Video) && content.video_id === video_id && content.menu) {
-        const removeButton = content.menu.items.find(
-          (item) => item.is(MenuServiceItem) && item.icon_type === 'DELETE'
-        )?.as(MenuServiceItem);
-
-        if (removeButton?.endpoint)
-          return removeButton.endpoint;
-
-      } else if (content.is(LockupView) && content.content_id === video_id) {
-        const openMenuCommand = content.metadata?.menu_button?.on_tap?.command;
-
-        if (
-          openMenuCommand?.is(ShowSheetCommand) &&
-          openMenuCommand.inline_content?.is(SheetView) &&
-          openMenuCommand.inline_content.content?.is(ListView)
-        ) {
-          const removeButton = openMenuCommand.inline_content.content.items.find(
-            (item) =>
-              item.is(ListItemView) &&
-              item.leading_image[0].client_resource?.image_name === 'DELETE'
-          )?.as(ListItemView);
-
-          const onTap = removeButton?.renderer_context?.command_context?.on_tap;
-
-          if (onTap?.command?.is(FeedbackEndpoint))
-            return onTap;
-
-          if (
-            onTap?.command?.is(ConfirmDialogEndpoint) &&
-            onTap.command.content?.confirm_endpoint?.is(FeedbackEndpoint)
-          )
-            return onTap.command.content.confirm_endpoint;
-        }
-      }
-    }
-  }
-
-  return undefined;
-}
+import type { Actions, ApiResponse } from '../../core/index.js';
+import type { IBrowseResponse } from '../types/index.js';
+import type { ObservedArray } from '../helpers.js';
 
 // TODO: make feed actions usable
 export default class History extends Feed<IBrowseResponse> {
@@ -130,4 +84,52 @@ export default class History extends Feed<IBrowseResponse> {
 
     throw new Error(`Video not found in watch history (ID: ${video_id})`);
   }
+}
+
+function findRemoveEndpoint(
+  sections: ObservedArray<ItemSection>,
+  video_id: string
+): NavigationEndpoint | undefined {
+  for (const section of sections) {
+    for (const content of section.contents) {
+      if (content.is(Video) && content.video_id === video_id && content.menu) {
+        const removeButton = content.menu.items.find(
+          (item) => item.is(MenuServiceItem) && item.icon_type === 'DELETE'
+        )?.as(MenuServiceItem);
+
+        const endpoint = removeButton?.endpoint;
+
+        if (endpoint)
+          return endpoint;
+
+      } else if (content.is(LockupView) && content.content_id === video_id) {
+        const openMenuCommand = content.metadata?.menu_button?.on_tap?.command;
+
+        if (
+          openMenuCommand?.is(ShowSheetCommand) &&
+          openMenuCommand.inline_content?.is(SheetView) &&
+          openMenuCommand.inline_content.content?.is(ListView)
+        ) {
+          const removeButton = openMenuCommand.inline_content.content.items.find(
+            (item) =>
+              item.is(ListItemView) &&
+              item.leading_image[0].client_resource?.image_name === 'DELETE'
+          )?.as(ListItemView);
+
+          const endpoint = removeButton?.renderer_context?.command_context?.on_tap;
+
+          if (endpoint?.command?.is(FeedbackEndpoint))
+            return endpoint;
+
+          if (
+            endpoint?.command?.is(ConfirmDialogEndpoint) &&
+            endpoint.command.content?.confirm_endpoint?.is(FeedbackEndpoint)
+          )
+            return endpoint.command.content.confirm_endpoint;
+        }
+      }
+    }
+  }
+
+  return undefined;
 }

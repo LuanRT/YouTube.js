@@ -1,8 +1,8 @@
 import { Parser, type RawNode } from '../index.js';
 import Text from './misc/Text.js';
 import Button from './Button.js';
-import { YTNode } from '../helpers.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
+import { YTNode } from '../helpers.js';
 
 export default class ConfirmDialog extends YTNode {
   static type = 'ConfirmDialog';

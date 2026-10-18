@@ -7,7 +7,7 @@ import AvatarView from './AvatarView.js';
 import RendererContext from './misc/RendererContext.js';
 import SubscribeButtonView from './SubscribeButtonView.js';
 import Text from './misc/Text.js';
-import { Thumbnail } from '../misc.js';
+import Thumbnail from './misc/Thumbnail.js';
 
 export default class ListItemView extends YTNode {
   static type = 'ListItemView';
@@ -22,7 +22,7 @@ export default class ListItemView extends YTNode {
     | 'LIST_ITEM_SELECTION_STYLE_RADIO'
     | 'LIST_ITEM_SELECTION_STYLE_TOGGLE';
   public background_color?: number;
-  
+
   public leading_accessory: AvatarView | null;
   public leading_image: Thumbnail[];
   public trailing_button: YTNode | null;
