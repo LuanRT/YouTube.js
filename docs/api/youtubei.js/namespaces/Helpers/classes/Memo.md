@@ -2,7 +2,7 @@
 
 # Class: Memo
 
-Defined in: [src/parser/helpers.ts:502](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L502)
+Defined in: [src/parser/helpers.ts:502](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L502)
 
 ## Extends
 
@@ -292,7 +292,7 @@ The element associated with the specific key, which will be the newly computed v
 
 > **getType**\<`T`, `K`\>(`types`): [`ObservedArray`](../type-aliases/ObservedArray.md)\<`InstanceType`\<`K`\[`number`\]\>\>
 
-Defined in: [src/parser/helpers.ts:503](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L503)
+Defined in: [src/parser/helpers.ts:503](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L503)
 
 ##### Type Parameters
 
@@ -318,7 +318,7 @@ Defined in: [src/parser/helpers.ts:503](https://github.com/LuanRT/YouTube.js/blo
 
 > **getType**\<`T`, `K`\>(...`types`): [`ObservedArray`](../type-aliases/ObservedArray.md)\<`InstanceType`\<`K`\[`number`\]\>\>
 
-Defined in: [src/parser/helpers.ts:504](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/helpers.ts#L504)
+Defined in: [src/parser/helpers.ts:504](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L504)
 
 ##### Type Parameters
 

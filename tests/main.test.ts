@@ -98,7 +98,7 @@ describe('YouTube.js Tests', () => {
       let comments: YT.Comments;
 
       beforeAll(async () => {
-        comments = await innertube.getComments('OGbhJjXl9Rk');
+        comments = await innertube.getComments('jNQXAC9IVRw');
         expect(comments).toBeDefined();
         expect(comments.header).toBeDefined();
         expect(comments.contents).toBeDefined();
@@ -115,7 +115,7 @@ describe('YouTube.js Tests', () => {
         let loaded_comment_thread: YTNodes.CommentThread;
 
         beforeAll(async () => {
-          let comment_thread = comments.contents.find((comment) => parseInt(comment.comment?.reply_count || '0') > 10);
+          let comment_thread = comments.contents.find((comment) => parseInt(comment.comment?.reply_count || '0') > 20);
           loaded_comment_thread = await comment_thread!.getReplies();
           expect(loaded_comment_thread.replies).toBeDefined();
         });
