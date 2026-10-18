@@ -2,7 +2,7 @@
 
 # Interface: ICache
 
-Defined in: [src/types/Cache.ts:1](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/types/Cache.ts#L1)
+Defined in: [src/types/Cache.ts:1](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/types/Cache.ts#L1)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/types/Cache.ts:1](https://github.com/LuanRT/YouTube.js/blob/06b
 
 > **cache\_dir**: `string`
 
-Defined in: [src/types/Cache.ts:2](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/types/Cache.ts#L2)
+Defined in: [src/types/Cache.ts:2](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/types/Cache.ts#L2)
 
 ## Methods
 
@@ -18,7 +18,7 @@ Defined in: [src/types/Cache.ts:2](https://github.com/LuanRT/YouTube.js/blob/06b
 
 > **get**(`key`): `Promise`\<`ArrayBuffer` \| `undefined`\>
 
-Defined in: [src/types/Cache.ts:3](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/types/Cache.ts#L3)
+Defined in: [src/types/Cache.ts:3](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/types/Cache.ts#L3)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/types/Cache.ts:3](https://github.com/LuanRT/YouTube.js/blob/06b
 
 > **remove**(`key`): `Promise`\<`void`\>
 
-Defined in: [src/types/Cache.ts:5](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/types/Cache.ts#L5)
+Defined in: [src/types/Cache.ts:5](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/types/Cache.ts#L5)
 
 #### Parameters
 
@@ -54,7 +54,7 @@ Defined in: [src/types/Cache.ts:5](https://github.com/LuanRT/YouTube.js/blob/06b
 
 > **set**(`key`, `value`): `Promise`\<`void`\>
 
-Defined in: [src/types/Cache.ts:4](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/types/Cache.ts#L4)
+Defined in: [src/types/Cache.ts:4](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/types/Cache.ts#L4)
 
 #### Parameters
 

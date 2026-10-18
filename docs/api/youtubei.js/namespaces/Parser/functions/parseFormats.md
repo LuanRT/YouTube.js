@@ -4,7 +4,7 @@
 
 > **parseFormats**(`formats`, `this_response_nsig_cache`): [`Format`](../../Misc/classes/Format.md)[]
 
-Defined in: [src/parser/parser.ts:800](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/parser.ts#L800)
+Defined in: [src/parser/parser.ts:798](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/parser.ts#L798)
 
 ## Parameters
 
