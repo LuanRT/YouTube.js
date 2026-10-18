@@ -234,6 +234,7 @@ export { default as ItemSectionTab } from './classes/ItemSectionTab.js';
 export { default as ItemSectionTabbedHeader } from './classes/ItemSectionTabbedHeader.js';
 export { default as LikeButton } from './classes/LikeButton.js';
 export { default as LikeButtonView } from './classes/LikeButtonView.js';
+export { default as LinearLayoutView } from './classes/LinearLayoutView.js';
 export { default as ListItemView } from './classes/ListItemView.js';
 export { default as ListView } from './classes/ListView.js';
 export { default as LiveChat } from './classes/LiveChat.js';
