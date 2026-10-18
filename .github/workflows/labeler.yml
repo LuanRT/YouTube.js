@@ -1,14 +1,19 @@
 name: Label PRs
 
 on:
-- pull_request_target
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
 
 jobs:
-  build:
+  labeler:
     runs-on: ubuntu-latest
     steps:
-    - uses: srvaroa/labeler@master
-      with:
+      - uses: srvaroa/labeler@v1.10.0
+        with:
           config_path: .github/labeler_config.yml
-      env:
-        GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"

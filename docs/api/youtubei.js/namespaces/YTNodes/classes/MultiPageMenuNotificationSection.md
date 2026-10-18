@@ -2,7 +2,7 @@
 
 # Class: MultiPageMenuNotificationSection
 
-Defined in: [src/parser/classes/menus/MultiPageMenuNotificationSection.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/menus/MultiPageMenuNotificationSection.ts#L8)
+Defined in: [src/parser/classes/menus/MultiPageMenuNotificationSection.ts:8](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/menus/MultiPageMenuNotificationSection.ts#L8)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/menus/MultiPageMenuNotificationSection.ts:8](htt
 
 > **new MultiPageMenuNotificationSection**(`data`): `MultiPageMenuNotificationSection`
 
-Defined in: [src/parser/classes/menus/MultiPageMenuNotificationSection.ts:14](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/menus/MultiPageMenuNotificationSection.ts#L14)
+Defined in: [src/parser/classes/menus/MultiPageMenuNotificationSection.ts:14](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/menus/MultiPageMenuNotificationSection.ts#L14)
 
 #### Parameters
 
@@ -34,17 +34,17 @@ Defined in: [src/parser/classes/menus/MultiPageMenuNotificationSection.ts:14](ht
 
 ### items
 
-> **items**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`ContinuationItem`](ContinuationItem.md) \| [`Message`](Message.md) \| [`Notification`](Notification.md)\>
+> **items**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`Message`](Message.md) \| [`ContinuationItem`](ContinuationItem.md) \| [`Notification`](Notification.md)\>
 
-Defined in: [src/parser/classes/menus/MultiPageMenuNotificationSection.ts:12](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/menus/MultiPageMenuNotificationSection.ts#L12)
+Defined in: [src/parser/classes/menus/MultiPageMenuNotificationSection.ts:12](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/menus/MultiPageMenuNotificationSection.ts#L12)
 
 ***
 
 ### notification\_section\_title?
 
-> `optional` **notification\_section\_title**: [`Text`](../../Misc/classes/Text.md)
+> `optional` **notification\_section\_title?**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/menus/MultiPageMenuNotificationSection.ts:11](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/menus/MultiPageMenuNotificationSection.ts#L11)
+Defined in: [src/parser/classes/menus/MultiPageMenuNotificationSection.ts:11](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/menus/MultiPageMenuNotificationSection.ts#L11)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/classes/menus/MultiPageMenuNotificationSection.ts:11](ht
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -64,7 +64,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > `static` **type**: `string` = `'MultiPageMenuNotificationSection'`
 
-Defined in: [src/parser/classes/menus/MultiPageMenuNotificationSection.ts:9](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/menus/MultiPageMenuNotificationSection.ts#L9)
+Defined in: [src/parser/classes/menus/MultiPageMenuNotificationSection.ts:9](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/menus/MultiPageMenuNotificationSection.ts#L9)
 
 #### Overrides
 
@@ -76,13 +76,13 @@ Defined in: [src/parser/classes/menus/MultiPageMenuNotificationSection.ts:9](htt
 
 #### Get Signature
 
-> **get** **contents**(): [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`ContinuationItem`](ContinuationItem.md) \| [`Message`](Message.md) \| [`Notification`](Notification.md)\>
+> **get** **contents**(): [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`Message`](Message.md) \| [`ContinuationItem`](ContinuationItem.md) \| [`Notification`](Notification.md)\>
 
-Defined in: [src/parser/classes/menus/MultiPageMenuNotificationSection.ts:25](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/menus/MultiPageMenuNotificationSection.ts#L25)
+Defined in: [src/parser/classes/menus/MultiPageMenuNotificationSection.ts:25](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/menus/MultiPageMenuNotificationSection.ts#L25)
 
 ##### Returns
 
-[`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`ContinuationItem`](ContinuationItem.md) \| [`Message`](Message.md) \| [`Notification`](Notification.md)\>
+[`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`Message`](Message.md) \| [`ContinuationItem`](ContinuationItem.md) \| [`Notification`](Notification.md)\>
 
 ## Methods
 
@@ -90,7 +90,7 @@ Defined in: [src/parser/classes/menus/MultiPageMenuNotificationSection.ts:25](ht
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -132,7 +132,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is MultiPageMenuNotificationSection & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -170,7 +170,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -208,7 +208,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

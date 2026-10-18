@@ -4,7 +4,7 @@
 
 > **parseLC**(`data`): [`ItemSectionContinuation`](../../../../classes/ItemSectionContinuation.md) \| [`SectionListContinuation`](../../../../classes/SectionListContinuation.md) \| [`LiveChatContinuation`](../../../../classes/LiveChatContinuation.md) \| [`MusicPlaylistShelfContinuation`](../../../../classes/MusicPlaylistShelfContinuation.md) \| [`MusicShelfContinuation`](../../../../classes/MusicShelfContinuation.md) \| [`GridContinuation`](../../../../classes/GridContinuation.md) \| [`PlaylistPanelContinuation`](../../../../classes/PlaylistPanelContinuation.md) \| [`ContinuationCommand`](../../../../classes/ContinuationCommand.md) \| `null`
 
-Defined in: [src/parser/parser.ts:722](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/parser.ts#L722)
+Defined in: [src/parser/parser.ts:752](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/parser.ts#L752)
 
 ## Parameters
 

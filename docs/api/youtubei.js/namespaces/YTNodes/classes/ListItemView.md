@@ -2,7 +2,7 @@
 
 # Class: ListItemView
 
-Defined in: [src/parser/classes/ListItemView.ts:11](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ListItemView.ts#L11)
+Defined in: [src/parser/classes/ListItemView.ts:12](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/ListItemView.ts#L12)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/ListItemView.ts:11](https://github.com/LuanRT/Yo
 
 > **new ListItemView**(`data`): `ListItemView`
 
-Defined in: [src/parser/classes/ListItemView.ts:33](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ListItemView.ts#L33)
+Defined in: [src/parser/classes/ListItemView.ts:35](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/ListItemView.ts#L35)
 
 #### Parameters
 
@@ -34,9 +34,9 @@ Defined in: [src/parser/classes/ListItemView.ts:33](https://github.com/LuanRT/Yo
 
 ### background\_color?
 
-> `optional` **background\_color**: `number`
+> `optional` **background\_color?**: `number`
 
-Defined in: [src/parser/classes/ListItemView.ts:23](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ListItemView.ts#L23)
+Defined in: [src/parser/classes/ListItemView.ts:24](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/ListItemView.ts#L24)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/parser/classes/ListItemView.ts:23](https://github.com/LuanRT/Yo
 
 > **has\_divider\_below**: `boolean`
 
-Defined in: [src/parser/classes/ListItemView.ts:30](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ListItemView.ts#L30)
+Defined in: [src/parser/classes/ListItemView.ts:32](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/ListItemView.ts#L32)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/classes/ListItemView.ts:30](https://github.com/LuanRT/Yo
 
 > **is\_disabled**: `boolean`
 
-Defined in: [src/parser/classes/ListItemView.ts:28](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ListItemView.ts#L28)
+Defined in: [src/parser/classes/ListItemView.ts:30](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/ListItemView.ts#L30)
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: [src/parser/classes/ListItemView.ts:28](https://github.com/LuanRT/Yo
 
 > **is\_selected**: `boolean`
 
-Defined in: [src/parser/classes/ListItemView.ts:29](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ListItemView.ts#L29)
+Defined in: [src/parser/classes/ListItemView.ts:31](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/ListItemView.ts#L31)
 
 ***
 
@@ -68,47 +68,55 @@ Defined in: [src/parser/classes/ListItemView.ts:29](https://github.com/LuanRT/Yo
 
 > **leading\_accessory**: [`AvatarView`](AvatarView.md) \| `null`
 
-Defined in: [src/parser/classes/ListItemView.ts:25](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ListItemView.ts#L25)
+Defined in: [src/parser/classes/ListItemView.ts:26](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/ListItemView.ts#L26)
+
+***
+
+### leading\_image
+
+> **leading\_image**: [`Thumbnail`](../../Misc/classes/Thumbnail.md)[]
+
+Defined in: [src/parser/classes/ListItemView.ts:27](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/ListItemView.ts#L27)
 
 ***
 
 ### renderer\_context?
 
-> `optional` **renderer\_context**: [`RendererContext`](../../Misc/classes/RendererContext.md)
+> `optional` **renderer\_context?**: [`RendererContext`](../../Misc/classes/RendererContext.md)
 
-Defined in: [src/parser/classes/ListItemView.ts:31](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ListItemView.ts#L31)
+Defined in: [src/parser/classes/ListItemView.ts:33](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/ListItemView.ts#L33)
 
 ***
 
 ### selection\_style?
 
-> `optional` **selection\_style**: `"LIST_ITEM_SELECTION_STYLE_UNSPECIFIED"` \| `"LIST_ITEM_SELECTION_STYLE_DEFAULT"` \| `"LIST_ITEM_SELECTION_STYLE_CHECKBOX"` \| `"LIST_ITEM_SELECTION_STYLE_RADIO"` \| `"LIST_ITEM_SELECTION_STYLE_TOGGLE"`
+> `optional` **selection\_style?**: `"LIST_ITEM_SELECTION_STYLE_UNSPECIFIED"` \| `"LIST_ITEM_SELECTION_STYLE_DEFAULT"` \| `"LIST_ITEM_SELECTION_STYLE_CHECKBOX"` \| `"LIST_ITEM_SELECTION_STYLE_RADIO"` \| `"LIST_ITEM_SELECTION_STYLE_TOGGLE"`
 
-Defined in: [src/parser/classes/ListItemView.ts:17](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ListItemView.ts#L17)
+Defined in: [src/parser/classes/ListItemView.ts:18](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/ListItemView.ts#L18)
 
 ***
 
 ### selection\_text?
 
-> `optional` **selection\_text**: [`Text`](../../Misc/classes/Text.md)
+> `optional` **selection\_text?**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/ListItemView.ts:16](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ListItemView.ts#L16)
+Defined in: [src/parser/classes/ListItemView.ts:17](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/ListItemView.ts#L17)
 
 ***
 
 ### subtitle?
 
-> `optional` **subtitle**: [`Text`](../../Misc/classes/Text.md)
+> `optional` **subtitle?**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/ListItemView.ts:15](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ListItemView.ts#L15)
+Defined in: [src/parser/classes/ListItemView.ts:16](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/ListItemView.ts#L16)
 
 ***
 
 ### title?
 
-> `optional` **title**: [`Text`](../../Misc/classes/Text.md)
+> `optional` **title?**: [`Text`](../../Misc/classes/Text.md)
 
-Defined in: [src/parser/classes/ListItemView.ts:14](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ListItemView.ts#L14)
+Defined in: [src/parser/classes/ListItemView.ts:15](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/ListItemView.ts#L15)
 
 ***
 
@@ -116,7 +124,7 @@ Defined in: [src/parser/classes/ListItemView.ts:14](https://github.com/LuanRT/Yo
 
 > **trailing\_button**: [`YTNode`](../../Helpers/classes/YTNode.md) \| `null`
 
-Defined in: [src/parser/classes/ListItemView.ts:26](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ListItemView.ts#L26)
+Defined in: [src/parser/classes/ListItemView.ts:28](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/ListItemView.ts#L28)
 
 ***
 
@@ -124,7 +132,7 @@ Defined in: [src/parser/classes/ListItemView.ts:26](https://github.com/LuanRT/Yo
 
 > **trailing\_buttons**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`SubscribeButtonView`](SubscribeButtonView.md)\>
 
-Defined in: [src/parser/classes/ListItemView.ts:27](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ListItemView.ts#L27)
+Defined in: [src/parser/classes/ListItemView.ts:29](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/ListItemView.ts#L29)
 
 ***
 
@@ -132,7 +140,7 @@ Defined in: [src/parser/classes/ListItemView.ts:27](https://github.com/LuanRT/Yo
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -144,7 +152,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > `static` **type**: `string` = `'ListItemView'`
 
-Defined in: [src/parser/classes/ListItemView.ts:12](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ListItemView.ts#L12)
+Defined in: [src/parser/classes/ListItemView.ts:13](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/ListItemView.ts#L13)
 
 #### Overrides
 
@@ -156,7 +164,7 @@ Defined in: [src/parser/classes/ListItemView.ts:12](https://github.com/LuanRT/Yo
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -198,7 +206,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is ListItemView & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -236,7 +244,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -274,7 +282,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

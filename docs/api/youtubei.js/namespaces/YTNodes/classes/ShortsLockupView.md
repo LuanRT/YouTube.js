@@ -2,7 +2,7 @@
 
 # Class: ShortsLockupView
 
-Defined in: [src/parser/classes/ShortsLockupView.ts:9](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ShortsLockupView.ts#L9)
+Defined in: [src/parser/classes/ShortsLockupView.ts:10](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/ShortsLockupView.ts#L10)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/ShortsLockupView.ts:9](https://github.com/LuanRT
 
 > **new ShortsLockupView**(`data`): `ShortsLockupView`
 
-Defined in: [src/parser/classes/ShortsLockupView.ts:26](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ShortsLockupView.ts#L26)
+Defined in: [src/parser/classes/ShortsLockupView.ts:28](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/ShortsLockupView.ts#L28)
 
 #### Parameters
 
@@ -36,15 +36,15 @@ Defined in: [src/parser/classes/ShortsLockupView.ts:26](https://github.com/LuanR
 
 > **accessibility\_text**: `string`
 
-Defined in: [src/parser/classes/ShortsLockupView.ts:13](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ShortsLockupView.ts#L13)
+Defined in: [src/parser/classes/ShortsLockupView.ts:14](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/ShortsLockupView.ts#L14)
 
 ***
 
 ### badge?
 
-> `optional` **badge**: [`BadgeView`](BadgeView.md) \| `null`
+> `optional` **badge?**: [`BadgeView`](BadgeView.md) \| `null`
 
-Defined in: [src/parser/classes/ShortsLockupView.ts:24](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ShortsLockupView.ts#L24)
+Defined in: [src/parser/classes/ShortsLockupView.ts:26](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/ShortsLockupView.ts#L26)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/parser/classes/ShortsLockupView.ts:24](https://github.com/LuanR
 
 > **entity\_id**: `string`
 
-Defined in: [src/parser/classes/ShortsLockupView.ts:12](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ShortsLockupView.ts#L12)
+Defined in: [src/parser/classes/ShortsLockupView.ts:13](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/ShortsLockupView.ts#L13)
 
 ***
 
@@ -60,15 +60,15 @@ Defined in: [src/parser/classes/ShortsLockupView.ts:12](https://github.com/LuanR
 
 > **index\_in\_collection**: `number`
 
-Defined in: [src/parser/classes/ShortsLockupView.ts:17](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ShortsLockupView.ts#L17)
+Defined in: [src/parser/classes/ShortsLockupView.ts:19](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/ShortsLockupView.ts#L19)
 
 ***
 
 ### inline\_player\_data?
 
-> `optional` **inline\_player\_data**: [`NavigationEndpoint`](NavigationEndpoint.md)
+> `optional` **inline\_player\_data?**: [`NavigationEndpoint`](NavigationEndpoint.md)
 
-Defined in: [src/parser/classes/ShortsLockupView.ts:23](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ShortsLockupView.ts#L23)
+Defined in: [src/parser/classes/ShortsLockupView.ts:25](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/ShortsLockupView.ts#L25)
 
 ***
 
@@ -76,7 +76,7 @@ Defined in: [src/parser/classes/ShortsLockupView.ts:23](https://github.com/LuanR
 
 > **menu\_on\_tap**: [`NavigationEndpoint`](NavigationEndpoint.md)
 
-Defined in: [src/parser/classes/ShortsLockupView.ts:16](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ShortsLockupView.ts#L16)
+Defined in: [src/parser/classes/ShortsLockupView.ts:18](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/ShortsLockupView.ts#L18)
 
 ***
 
@@ -84,7 +84,7 @@ Defined in: [src/parser/classes/ShortsLockupView.ts:16](https://github.com/LuanR
 
 > **menu\_on\_tap\_a11y\_label**: `string`
 
-Defined in: [src/parser/classes/ShortsLockupView.ts:18](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ShortsLockupView.ts#L18)
+Defined in: [src/parser/classes/ShortsLockupView.ts:20](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/ShortsLockupView.ts#L20)
 
 ***
 
@@ -92,7 +92,7 @@ Defined in: [src/parser/classes/ShortsLockupView.ts:18](https://github.com/LuanR
 
 > **on\_tap\_endpoint**: [`NavigationEndpoint`](NavigationEndpoint.md)
 
-Defined in: [src/parser/classes/ShortsLockupView.ts:15](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ShortsLockupView.ts#L15)
+Defined in: [src/parser/classes/ShortsLockupView.ts:17](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/ShortsLockupView.ts#L17)
 
 ***
 
@@ -100,15 +100,15 @@ Defined in: [src/parser/classes/ShortsLockupView.ts:15](https://github.com/LuanR
 
 > **overlay\_metadata**: `object`
 
-Defined in: [src/parser/classes/ShortsLockupView.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ShortsLockupView.ts#L19)
+Defined in: [src/parser/classes/ShortsLockupView.ts:21](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/ShortsLockupView.ts#L21)
 
 #### primary\_text?
 
-> `optional` **primary\_text**: [`Text`](../../Misc/classes/Text.md)
+> `optional` **primary\_text?**: [`Text`](../../Misc/classes/Text.md)
 
 #### secondary\_text?
 
-> `optional` **secondary\_text**: [`Text`](../../Misc/classes/Text.md)
+> `optional` **secondary\_text?**: [`Text`](../../Misc/classes/Text.md)
 
 ***
 
@@ -116,7 +116,15 @@ Defined in: [src/parser/classes/ShortsLockupView.ts:19](https://github.com/LuanR
 
 > **thumbnail**: [`Thumbnail`](../../Misc/classes/Thumbnail.md)[]
 
-Defined in: [src/parser/classes/ShortsLockupView.ts:14](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ShortsLockupView.ts#L14)
+Defined in: [src/parser/classes/ShortsLockupView.ts:15](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/ShortsLockupView.ts#L15)
+
+***
+
+### thumbnail\_view\_model
+
+> **thumbnail\_view\_model**: [`ThumbnailView`](ThumbnailView.md) \| `null`
+
+Defined in: [src/parser/classes/ShortsLockupView.ts:16](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/ShortsLockupView.ts#L16)
 
 ***
 
@@ -124,7 +132,7 @@ Defined in: [src/parser/classes/ShortsLockupView.ts:14](https://github.com/LuanR
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -136,7 +144,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > `static` **type**: `string` = `'ShortsLockupView'`
 
-Defined in: [src/parser/classes/ShortsLockupView.ts:10](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/ShortsLockupView.ts#L10)
+Defined in: [src/parser/classes/ShortsLockupView.ts:11](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/ShortsLockupView.ts#L11)
 
 #### Overrides
 
@@ -148,7 +156,7 @@ Defined in: [src/parser/classes/ShortsLockupView.ts:10](https://github.com/LuanR
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -190,7 +198,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is ShortsLockupView & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -228,7 +236,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -266,7 +274,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

@@ -2,7 +2,7 @@
 
 # Class: YTNode
 
-Defined in: [src/parser/helpers.ts:6](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L6)
+Defined in: [src/parser/helpers.ts:6](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L6)
 
 ## Extended by
 
@@ -107,6 +107,7 @@ Defined in: [src/parser/helpers.ts:6](https://github.com/LuanRT/YouTube.js/blob/
 - [`AuthorCommentBadge`](../../YTNodes/classes/AuthorCommentBadge.md)
 - [`CommentActionButtons`](../../YTNodes/classes/CommentActionButtons.md)
 - [`CommentDialog`](../../YTNodes/classes/CommentDialog.md)
+- [`CommentImageAttachmentView`](../../YTNodes/classes/CommentImageAttachmentView.md)
 - [`CommentReplies`](../../YTNodes/classes/CommentReplies.md)
 - [`CommentReplyDialog`](../../YTNodes/classes/CommentReplyDialog.md)
 - [`CommentsEntryPointHeader`](../../YTNodes/classes/CommentsEntryPointHeader.md)
@@ -122,17 +123,21 @@ Defined in: [src/parser/helpers.ts:6](https://github.com/LuanRT/YouTube.js/blob/
 - [`SponsorCommentBadge`](../../YTNodes/classes/SponsorCommentBadge.md)
 - [`VoiceReplyContainerView`](../../YTNodes/classes/VoiceReplyContainerView.md)
 - [`CompactChannel`](../../YTNodes/classes/CompactChannel.md)
+- [`CompactInfocard`](../../YTNodes/classes/CompactInfocard.md)
 - [`CompactLink`](../../YTNodes/classes/CompactLink.md)
 - [`CompactMovie`](../../YTNodes/classes/CompactMovie.md)
 - [`CompactStation`](../../YTNodes/classes/CompactStation.md)
 - [`CompactVideo`](../../YTNodes/classes/CompactVideo.md)
 - [`CompositeVideoPrimaryInfo`](../../YTNodes/classes/CompositeVideoPrimaryInfo.md)
 - [`ConfirmDialog`](../../YTNodes/classes/ConfirmDialog.md)
+- [`ContentListItemView`](../../YTNodes/classes/ContentListItemView.md)
 - [`ContentMetadataView`](../../YTNodes/classes/ContentMetadataView.md)
 - [`ContentPreviewImageView`](../../YTNodes/classes/ContentPreviewImageView.md)
 - [`ContinuationItem`](../../YTNodes/classes/ContinuationItem.md)
+- [`ContinuationItemView`](../../YTNodes/classes/ContinuationItemView.md)
 - [`ConversationBar`](../../YTNodes/classes/ConversationBar.md)
 - [`CopyLink`](../../YTNodes/classes/CopyLink.md)
+- [`CourseProgressView`](../../YTNodes/classes/CourseProgressView.md)
 - [`CreatePlaylistDialog`](../../YTNodes/classes/CreatePlaylistDialog.md)
 - [`CreatePlaylistDialogFormView`](../../YTNodes/classes/CreatePlaylistDialogFormView.md)
 - [`DecoratedAvatarView`](../../YTNodes/classes/DecoratedAvatarView.md)
@@ -158,6 +163,7 @@ Defined in: [src/parser/helpers.ts:6](https://github.com/LuanRT/YouTube.js/blob/
 - [`EmojiPickerUpsellCategory`](../../YTNodes/classes/EmojiPickerUpsellCategory.md)
 - [`AddToPlaylistServiceEndpoint`](../../YTNodes/classes/AddToPlaylistServiceEndpoint.md)
 - [`BrowseEndpoint`](../../YTNodes/classes/BrowseEndpoint.md)
+- [`ConfirmDialogEndpoint`](../../YTNodes/classes/ConfirmDialogEndpoint.md)
 - [`CreateCommentEndpoint`](../../YTNodes/classes/CreateCommentEndpoint.md)
 - [`CreatePlaylistServiceEndpoint`](../../YTNodes/classes/CreatePlaylistServiceEndpoint.md)
 - [`DeletePlaylistEndpoint`](../../YTNodes/classes/DeletePlaylistEndpoint.md)
@@ -232,12 +238,14 @@ Defined in: [src/parser/helpers.ts:6](https://github.com/LuanRT/YouTube.js/blob/
 - [`InfoPanelContent`](../../YTNodes/classes/InfoPanelContent.md)
 - [`InfoRow`](../../YTNodes/classes/InfoRow.md)
 - [`InteractiveTabbedHeader`](../../YTNodes/classes/InteractiveTabbedHeader.md)
+- [`InterstitialView`](../../YTNodes/classes/InterstitialView.md)
 - [`ItemSection`](../../YTNodes/classes/ItemSection.md)
 - [`ItemSectionHeader`](../../YTNodes/classes/ItemSectionHeader.md)
 - [`ItemSectionTab`](../../YTNodes/classes/ItemSectionTab.md)
 - [`ItemSectionTabbedHeader`](../../YTNodes/classes/ItemSectionTabbedHeader.md)
 - [`LikeButton`](../../YTNodes/classes/LikeButton.md)
 - [`LikeButtonView`](../../YTNodes/classes/LikeButtonView.md)
+- [`LinearLayoutView`](../../YTNodes/classes/LinearLayoutView.md)
 - [`ListItemView`](../../YTNodes/classes/ListItemView.md)
 - [`ListView`](../../YTNodes/classes/ListView.md)
 - [`LiveChat`](../../YTNodes/classes/LiveChat.md)
@@ -295,12 +303,16 @@ Defined in: [src/parser/helpers.ts:6](https://github.com/LuanRT/YouTube.js/blob/
 - [`LiveChatMessageInput`](../../YTNodes/classes/LiveChatMessageInput.md)
 - [`LiveChatParticipant`](../../YTNodes/classes/LiveChatParticipant.md)
 - [`LiveChatParticipantsList`](../../YTNodes/classes/LiveChatParticipantsList.md)
+- [`LiveStreamability`](../../YTNodes/classes/LiveStreamability.md)
+- [`LiveStreamOfflineSlate`](../../YTNodes/classes/LiveStreamOfflineSlate.md)
 - [`LockupMetadataView`](../../YTNodes/classes/LockupMetadataView.md)
 - [`LockupView`](../../YTNodes/classes/LockupView.md)
 - [`MacroMarkersInfoItem`](../../YTNodes/classes/MacroMarkersInfoItem.md)
 - [`MacroMarkersList`](../../YTNodes/classes/MacroMarkersList.md)
 - [`MacroMarkersListEntity`](../../YTNodes/classes/MacroMarkersListEntity.md)
 - [`MacroMarkersListItem`](../../YTNodes/classes/MacroMarkersListItem.md)
+- [`MediaLockup`](../../YTNodes/classes/MediaLockup.md)
+- [`MenuCustomIconItem`](../../YTNodes/classes/MenuCustomIconItem.md)
 - [`Menu`](../../YTNodes/classes/Menu.md)
 - [`MenuFlexibleItem`](../../YTNodes/classes/MenuFlexibleItem.md)
 - [`MenuPopup`](../../YTNodes/classes/MenuPopup.md)
@@ -377,6 +389,7 @@ Defined in: [src/parser/helpers.ts:6](https://github.com/LuanRT/YouTube.js/blob/
 - [`PlayerCaptionsTracklist`](../../YTNodes/classes/PlayerCaptionsTracklist.md)
 - [`PlayerControlsOverlay`](../../YTNodes/classes/PlayerControlsOverlay.md)
 - [`PlayerErrorMessage`](../../YTNodes/classes/PlayerErrorMessage.md)
+- [`PlayerInterstitial`](../../YTNodes/classes/PlayerInterstitial.md)
 - [`PlayerLegacyDesktopYpcOffer`](../../YTNodes/classes/PlayerLegacyDesktopYpcOffer.md)
 - [`PlayerLegacyDesktopYpcTrailer`](../../YTNodes/classes/PlayerLegacyDesktopYpcTrailer.md)
 - [`PlayerLiveStoryboardSpec`](../../YTNodes/classes/PlayerLiveStoryboardSpec.md)
@@ -388,6 +401,7 @@ Defined in: [src/parser/helpers.ts:6](https://github.com/LuanRT/YouTube.js/blob/
 - [`PlayerStoryboardSpec`](../../YTNodes/classes/PlayerStoryboardSpec.md)
 - [`Playlist`](../../YTNodes/classes/Playlist.md)
 - [`PlaylistAddToOption`](../../YTNodes/classes/PlaylistAddToOption.md)
+- [`PlaylistCollaborationView`](../../YTNodes/classes/PlaylistCollaborationView.md)
 - [`PlaylistCustomThumbnail`](../../YTNodes/classes/PlaylistCustomThumbnail.md)
 - [`PlaylistHeader`](../../YTNodes/classes/PlaylistHeader.md)
 - [`PlaylistInfoCardContent`](../../YTNodes/classes/PlaylistInfoCardContent.md)
@@ -468,6 +482,7 @@ Defined in: [src/parser/helpers.ts:6](https://github.com/LuanRT/YouTube.js/blob/
 - [`StartAt`](../../YTNodes/classes/StartAt.md)
 - [`StructuredDescriptionContent`](../../YTNodes/classes/StructuredDescriptionContent.md)
 - [`StructuredDescriptionPlaylistLockup`](../../YTNodes/classes/StructuredDescriptionPlaylistLockup.md)
+- [`StructuredDescriptionVideoLockup`](../../YTNodes/classes/StructuredDescriptionVideoLockup.md)
 - [`SubFeedOption`](../../YTNodes/classes/SubFeedOption.md)
 - [`SubFeedSelector`](../../YTNodes/classes/SubFeedSelector.md)
 - [`SubscribeButton`](../../YTNodes/classes/SubscribeButton.md)
@@ -485,6 +500,7 @@ Defined in: [src/parser/helpers.ts:6](https://github.com/LuanRT/YouTube.js/blob/
 - [`ThumbnailHoverOverlayToggleActionsView`](../../YTNodes/classes/ThumbnailHoverOverlayToggleActionsView.md)
 - [`ThumbnailHoverOverlayView`](../../YTNodes/classes/ThumbnailHoverOverlayView.md)
 - [`ThumbnailLandscapePortrait`](../../YTNodes/classes/ThumbnailLandscapePortrait.md)
+- [`ThumbnailOverlayAvatarStackView`](../../YTNodes/classes/ThumbnailOverlayAvatarStackView.md)
 - [`ThumbnailOverlayBadgeView`](../../YTNodes/classes/ThumbnailOverlayBadgeView.md)
 - [`ThumbnailOverlayBottomPanel`](../../YTNodes/classes/ThumbnailOverlayBottomPanel.md)
 - [`ThumbnailOverlayEndorsement`](../../YTNodes/classes/ThumbnailOverlayEndorsement.md)
@@ -501,8 +517,11 @@ Defined in: [src/parser/helpers.ts:6](https://github.com/LuanRT/YouTube.js/blob/
 - [`ThumbnailOverlayTitleView`](../../YTNodes/classes/ThumbnailOverlayTitleView.md)
 - [`ThumbnailOverlayToggleButton`](../../YTNodes/classes/ThumbnailOverlayToggleButton.md)
 - [`ThumbnailView`](../../YTNodes/classes/ThumbnailView.md)
+- [`TicketEvent`](../../YTNodes/classes/TicketEvent.md)
+- [`TicketShelf`](../../YTNodes/classes/TicketShelf.md)
 - [`TimedMarkerDecoration`](../../YTNodes/classes/TimedMarkerDecoration.md)
 - [`TitleAndButtonListHeader`](../../YTNodes/classes/TitleAndButtonListHeader.md)
+- [`ToggleableListItemView`](../../YTNodes/classes/ToggleableListItemView.md)
 - [`ToggleButton`](../../YTNodes/classes/ToggleButton.md)
 - [`ToggleButtonView`](../../YTNodes/classes/ToggleButtonView.md)
 - [`ToggleFormField`](../../YTNodes/classes/ToggleFormField.md)
@@ -529,10 +548,12 @@ Defined in: [src/parser/helpers.ts:6](https://github.com/LuanRT/YouTube.js/blob/
 - [`VideoAttributesSectionView`](../../YTNodes/classes/VideoAttributesSectionView.md)
 - [`VideoAttributeView`](../../YTNodes/classes/VideoAttributeView.md)
 - [`VideoDescriptionCourseSection`](../../YTNodes/classes/VideoDescriptionCourseSection.md)
+- [`VideoDescriptionGamingSection`](../../YTNodes/classes/VideoDescriptionGamingSection.md)
 - [`VideoDescriptionHeader`](../../YTNodes/classes/VideoDescriptionHeader.md)
 - [`VideoDescriptionInfocardsSection`](../../YTNodes/classes/VideoDescriptionInfocardsSection.md)
 - [`VideoDescriptionMusicSection`](../../YTNodes/classes/VideoDescriptionMusicSection.md)
 - [`VideoDescriptionTranscriptSection`](../../YTNodes/classes/VideoDescriptionTranscriptSection.md)
+- [`VideoDescriptionYouchatSectionView`](../../YTNodes/classes/VideoDescriptionYouchatSectionView.md)
 - [`VideoInfoCardContent`](../../YTNodes/classes/VideoInfoCardContent.md)
 - [`VideoMetadataCarouselView`](../../YTNodes/classes/VideoMetadataCarouselView.md)
 - [`VideoOwner`](../../YTNodes/classes/VideoOwner.md)
@@ -540,6 +561,7 @@ Defined in: [src/parser/helpers.ts:6](https://github.com/LuanRT/YouTube.js/blob/
 - [`VideoSecondaryInfo`](../../YTNodes/classes/VideoSecondaryInfo.md)
 - [`VideoSummaryContentView`](../../YTNodes/classes/VideoSummaryContentView.md)
 - [`VideoSummaryParagraphView`](../../YTNodes/classes/VideoSummaryParagraphView.md)
+- [`VideoTitleHeaderView`](../../YTNodes/classes/VideoTitleHeaderView.md)
 - [`VideoViewCount`](../../YTNodes/classes/VideoViewCount.md)
 - [`ViewCountFactoid`](../../YTNodes/classes/ViewCountFactoid.md)
 - [`WatchCardCompactVideo`](../../YTNodes/classes/WatchCardCompactVideo.md)
@@ -561,7 +583,7 @@ Defined in: [src/parser/helpers.ts:6](https://github.com/LuanRT/YouTube.js/blob/
 
 > **new YTNode**(): `YTNode`
 
-Defined in: [src/parser/helpers.ts:10](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L10)
+Defined in: [src/parser/helpers.ts:10](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L10)
 
 #### Returns
 
@@ -573,7 +595,7 @@ Defined in: [src/parser/helpers.ts:10](https://github.com/LuanRT/YouTube.js/blob
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L8)
 
 ***
 
@@ -581,7 +603,7 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > `readonly` `static` **type**: `string` = `'YTNode'`
 
-Defined in: [src/parser/helpers.ts:7](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L7)
+Defined in: [src/parser/helpers.ts:7](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L7)
 
 ## Methods
 
@@ -589,7 +611,7 @@ Defined in: [src/parser/helpers.ts:7](https://github.com/LuanRT/YouTube.js/blob/
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -627,7 +649,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is YTNode & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -661,7 +683,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -695,7 +717,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

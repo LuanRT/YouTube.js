@@ -4,7 +4,7 @@
 
 > **hasKeys**\<`T`, `R`\>(`params`, ...`keys`): `params is Exclude<T, R[number]> & Required<Pick<T, R[number]>>`
 
-Defined in: [src/utils/Utils.ts:181](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/Utils.ts#L181)
+Defined in: [src/utils/Utils.ts:181](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/utils/Utils.ts#L181)
 
 ## Type Parameters
 

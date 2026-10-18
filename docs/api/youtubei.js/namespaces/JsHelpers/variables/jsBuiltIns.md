@@ -4,4 +4,4 @@
 
 > `const` **jsBuiltIns**: `Set`\<`string`\>
 
-Defined in: [src/utils/javascript/helpers.ts:6](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/utils/javascript/helpers.ts#L6)
+Defined in: [src/utils/javascript/helpers.ts:6](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/utils/javascript/helpers.ts#L6)

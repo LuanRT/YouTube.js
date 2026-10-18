@@ -28,7 +28,7 @@ export type DeviceAndUserCode = {
   error_code?: string;
 };
 
-export type OAuth2AuthEventHandler = (data: { credentials: OAuth2Tokens; }) => void;
+export type OAuth2AuthEventHandler = (data: { credentials: OAuth2Tokens | undefined; }) => void;
 export type OAuth2AuthPendingEventHandler = (data: DeviceAndUserCode) => void;
 export type OAuth2AuthErrorEventHandler = (err: OAuth2Error) => void;
 

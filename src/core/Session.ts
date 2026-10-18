@@ -251,12 +251,19 @@ export type SessionArgs = {
   on_behalf_of_user: string | undefined;
 }
 
+export type SessionEvents = {
+  auth: OAuth2AuthEventHandler;
+  'auth-pending': OAuth2AuthPendingEventHandler;
+  'auth-error': OAuth2AuthErrorEventHandler;
+  'update-credentials': OAuth2AuthEventHandler;
+}
+
 const TAG = 'Session';
 
 /**
  * Represents an InnerTube session. This holds all the data needed to make requests to YouTube.
  */
-export default class Session extends EventEmitter {
+export default class Session extends EventEmitter<SessionEvents> {
   public oauth: OAuth2;
   public http: HTTPClient;
   public logged_in: boolean;
@@ -281,23 +288,6 @@ export default class Session extends EventEmitter {
     this.oauth = new OAuth2(this);
     this.logged_in = !!cookie;
     this.user_agent = context.client.userAgent;
-  }
-
-  on(type: 'auth', listener: OAuth2AuthEventHandler): void;
-  on(type: 'auth-pending', listener: OAuth2AuthPendingEventHandler): void;
-  on(type: 'auth-error', listener: OAuth2AuthErrorEventHandler): void;
-  on(type: 'update-credentials', listener: OAuth2AuthEventHandler): void;
-
-  on(type: string, listener: (...args: any[]) => void): void {
-    super.on(type, listener);
-  }
-
-  once(type: 'auth', listener: OAuth2AuthEventHandler): void;
-  once(type: 'auth-pending', listener: OAuth2AuthPendingEventHandler): void;
-  once(type: 'auth-error', listener: OAuth2AuthErrorEventHandler): void;
-
-  once(type: string, listener: (...args: any[]) => void): void {
-    super.once(type, listener);
   }
 
   static async create(options: SessionOptions = {}) {
@@ -560,9 +550,9 @@ export default class Session extends EventEmitter {
     const text = await res.text();
 
     if (!text.startsWith(')]}\''))
-      throw new SessionError('Invalid JSPB response');
+      throw new SessionError('Incorrect JSPB formatting');
 
-    const data = JSON.parse(text.replace(/^\)\]\}'/, ''));
+    const data = JSON.parse(text.substring(5));
 
     const ytcfg = data[0][2];
 
@@ -571,7 +561,7 @@ export default class Session extends EventEmitter {
     const [ [ device_info ], api_key ] = ytcfg;
 
     const config_info = device_info[61];
-    const app_install_data = config_info[config_info.length - 1];
+    const app_install_data = config_info?.[config_info.length - 1];
 
     const context_info = {
       hl: options.lang || device_info[0],
