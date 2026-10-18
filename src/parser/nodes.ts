@@ -146,6 +146,7 @@ export { default as EmojiPickerUpsellCategory } from './classes/EmojiPickerUpsel
 export { default as AddToPlaylistEndpoint } from './classes/endpoints/AddToPlaylistEndpoint.js';
 export { default as AddToPlaylistServiceEndpoint } from './classes/endpoints/AddToPlaylistServiceEndpoint.js';
 export { default as BrowseEndpoint } from './classes/endpoints/BrowseEndpoint.js';
+export { default as ConfirmDialogEndpoint } from './classes/endpoints/ConfirmDialogEndpoint.js';
 export { default as CreateCommentEndpoint } from './classes/endpoints/CreateCommentEndpoint.js';
 export { default as CreatePlaylistServiceEndpoint } from './classes/endpoints/CreatePlaylistServiceEndpoint.js';
 export { default as DeletePlaylistEndpoint } from './classes/endpoints/DeletePlaylistEndpoint.js';
