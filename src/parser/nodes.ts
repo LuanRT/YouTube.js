@@ -541,6 +541,7 @@ export { default as VideoAttributesSectionView } from './classes/VideoAttributes
 export { default as VideoAttributeView } from './classes/VideoAttributeView.js';
 export { default as VideoCard } from './classes/VideoCard.js';
 export { default as VideoDescriptionCourseSection } from './classes/VideoDescriptionCourseSection.js';
+export { default as VideoDescriptionGamingSection } from './classes/VideoDescriptionGamingSection.js';
 export { default as VideoDescriptionHeader } from './classes/VideoDescriptionHeader.js';
 export { default as VideoDescriptionInfocardsSection } from './classes/VideoDescriptionInfocardsSection.js';
 export { default as VideoDescriptionMusicSection } from './classes/VideoDescriptionMusicSection.js';
