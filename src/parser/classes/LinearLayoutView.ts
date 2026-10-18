@@ -11,9 +11,7 @@ export default class LinearLayoutView extends YTNode {
   constructor(data: RawNode) {
     super();
     this.items = Parser.parseArray(data.items);
-
-    if ('rendererContext' in data) {
+    if ('rendererContext' in data)
       this.renderer_context = new RendererContext(data.rendererContext);
-    }
   }
 }
