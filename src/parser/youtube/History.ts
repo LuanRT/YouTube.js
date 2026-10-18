@@ -100,8 +100,9 @@ export default class History extends Feed<IBrowseResponse> {
 
   /**
    * Removes a video from watch history.
+   * @returns `true` if YouTube processed the request.
    */
-  async removeVideo(video_id: string, pages_to_load: number = 1): Promise<ApiResponse | undefined> {
+  async removeVideo(video_id: string, pages_to_load: number = 1): Promise<boolean> {
     if (!this.actions.session.logged_in)
       throw new Error('You must be signed in to perform this operation.');
 
@@ -111,7 +112,7 @@ export default class History extends Feed<IBrowseResponse> {
       const feedbackEndpoint = findRemoveEndpoint(self.sections, video_id);
 
       if (feedbackEndpoint) {
-        return feedbackEndpoint.call(this.actions, { parse: false });
+        return self.#submitFeedback(feedbackEndpoint);
       }
 
       if (remaining === 1)
