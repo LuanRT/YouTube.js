@@ -34,6 +34,7 @@ import AppendContinuationItemsAction from '../classes/actions/AppendContinuation
 import type { Actions, ApiResponse } from '../../core/index.js';
 import type { ObservedArray, YTNode } from '../helpers.js';
 import type Heatmap from '../classes/Heatmap.js';
+import type EngagementPanelSectionList from '../classes/EngagementPanelSectionList.js';
 
 export default class VideoInfo extends MediaInfo {
   public primary_info?: VideoPrimaryInfo | null;
@@ -48,6 +49,7 @@ export default class VideoInfo extends MediaInfo {
   public livechat?: LiveChat | null;
   public autoplay?: TwoColumnWatchNextResults['autoplay'];
   public heat_map?: Heatmap | null;
+  public engagement_panels?: ObservedArray<EngagementPanelSectionList>;
 
   #watch_next_continuation?: ContinuationItem;
   
@@ -96,6 +98,7 @@ export default class VideoInfo extends MediaInfo {
       this.secondary_info = results.firstOfType(VideoSecondaryInfo);
       this.merchandise = results.firstOfType(MerchandiseShelf);
       this.related_chip_cloud = secondary_results.firstOfType(RelatedChipCloud)?.content.as(ChipCloud);
+      this.engagement_panels = next?.engagement_panels;
 
       if (two_col?.playlist) {
         this.playlist = two_col.playlist;

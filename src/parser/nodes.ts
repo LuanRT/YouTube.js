@@ -105,6 +105,7 @@ export { default as PdgCommentChip } from './classes/comments/PdgCommentChip.js'
 export { default as SponsorCommentBadge } from './classes/comments/SponsorCommentBadge.js';
 export { default as VoiceReplyContainerView } from './classes/comments/VoiceReplyContainerView.js';
 export { default as CompactChannel } from './classes/CompactChannel.js';
+export { default as CompactInfocard } from './classes/CompactInfocard.js';
 export { default as CompactLink } from './classes/CompactLink.js';
 export { default as CompactMix } from './classes/CompactMix.js';
 export { default as CompactMovie } from './classes/CompactMovie.js';
@@ -301,6 +302,7 @@ export { default as MacroMarkersInfoItem } from './classes/MacroMarkersInfoItem.
 export { default as MacroMarkersList } from './classes/MacroMarkersList.js';
 export { default as MacroMarkersListEntity } from './classes/MacroMarkersListEntity.js';
 export { default as MacroMarkersListItem } from './classes/MacroMarkersListItem.js';
+export { default as MediaLockup } from './classes/MediaLockup.js';
 export { default as MenuCustomIconItem } from './classes/MenuCustomIconItem.js';
 export { default as Menu } from './classes/menus/Menu.js';
 export { default as MenuFlexibleItem } from './classes/menus/MenuFlexibleItem.js';
@@ -475,6 +477,7 @@ export { default as SortFilterSubMenu } from './classes/SortFilterSubMenu.js';
 export { default as StartAt } from './classes/StartAt.js';
 export { default as StructuredDescriptionContent } from './classes/StructuredDescriptionContent.js';
 export { default as StructuredDescriptionPlaylistLockup } from './classes/StructuredDescriptionPlaylistLockup.js';
+export { default as StructuredDescriptionVideoLockup } from './classes/StructuredDescriptionVideoLockup.js';
 export { default as SubFeedOption } from './classes/SubFeedOption.js';
 export { default as SubFeedSelector } from './classes/SubFeedSelector.js';
 export { default as SubscribeButton } from './classes/SubscribeButton.js';
