@@ -5,6 +5,7 @@ import Alert from '../classes/Alert.js';
 import AvatarStackView from '../classes/AvatarStackView.js';
 import ContinuationItem from '../classes/ContinuationItem.js';
 import ContinuationItemView from '../classes/ContinuationItemView.js';
+import ItemSection from '../classes/ItemSection.js';
 import LockupView from '../classes/LockupView.js';
 import Message from '../classes/Message.js';
 import PlaylistCustomThumbnail from '../classes/PlaylistCustomThumbnail.js';
@@ -18,8 +19,11 @@ import PlaylistVideoThumbnail from '../classes/PlaylistVideoThumbnail.js';
 import ReelItem from '../classes/ReelItem.js';
 import SectionList from '../classes/SectionList.js';
 import ShortsLockupView from '../classes/ShortsLockupView.js';
+import TwoColumnBrowseResults from '../classes/TwoColumnBrowseResults.js';
 import VideoOwner from '../classes/VideoOwner.js';
+import AppendContinuationItemsAction from '../classes/actions/AppendContinuationItemsAction.js';
 import ShowEngagementPanelEndpoint from '../classes/endpoints/ShowEngagementPanelEndpoint.js';
+import { ReloadContinuationItemsCommand } from '../continuations.js';
 import { observe, type ObservedArray, type YTNode } from '../helpers.js';
 
 import type { Actions, ApiResponse } from '../../core/index.js';
@@ -88,30 +92,17 @@ export default class Playlist extends Feed<IBrowseResponse> {
   }
 
   get items(): ObservedArray<LockupView | PlaylistVideo | ReelItem | ShortsLockupView> {
-    return observe(this.videos.as(LockupView, PlaylistVideo, ReelItem, ShortsLockupView).filter((video) => (video as PlaylistVideo).style !== 'PLAYLIST_VIDEO_RENDERER_STYLE_RECOMMENDED_VIDEO'));
+    return observe(this.#getPlaylistContents().filterType(LockupView, PlaylistVideo, ReelItem, ShortsLockupView).filter((video) =>
+      (!video.is(LockupView) || [ 'VIDEO', 'MOVIE', 'SHORT', 'STATION' ].includes(video.content_type)) &&
+      (video as PlaylistVideo).style !== 'PLAYLIST_VIDEO_RENDERER_STYLE_RECOMMENDED_VIDEO'));
   }
 
   get has_continuation() {
-    const section_list = this.memo.getType(SectionList)[0];
-
-    if (!section_list)
-      return super.has_continuation;
-
-    return !!this.memo.getType(ContinuationItem, ContinuationItemView).find((node) => !section_list.contents.includes(node));
+    return this.#getPlaylistContents().some((node) => node.is(ContinuationItem, ContinuationItemView));
   }
 
   async getContinuationData(): Promise<IBrowseResponse | undefined> {
-    const section_list = this.memo.getType(SectionList)[0];
-
-    /**
-     * No section list means there can't be additional continuation nodes here,
-     * so no need to check.
-     */
-    if (!section_list)
-      return await super.getContinuationData();
-
-    const playlist_contents_continuation = this.memo.getType(ContinuationItem, ContinuationItemView)
-      .find((node) => !section_list.contents.includes(node));
+    const playlist_contents_continuation = this.#getPlaylistContents().firstOfType(ContinuationItem, ContinuationItemView);
 
     if (!playlist_contents_continuation)
       throw new InnertubeError('There are no continuations.');
@@ -124,6 +115,36 @@ export default class Playlist extends Feed<IBrowseResponse> {
     if (!page)
       throw new InnertubeError('Could not get continuation data');
     return new Playlist(this.actions, page, true);
+  }
+
+  #getPlaylistContents(): ObservedArray<YTNode> {
+    const updates = observe([
+      ...this.page.on_response_received_actions || [],
+      ...this.page.on_response_received_endpoints || []
+    ]);
+    const update = updates.firstOfType(AppendContinuationItemsAction, ReloadContinuationItemsCommand);
+    const root = this.page.contents?.is_node ? this.page.contents.item() : null;
+    const listing = root?.is(TwoColumnBrowseResults)
+      ? (root.tabs.find((tab) => tab.selected)?.content ?? root.tabs.find((tab) => tab.content)?.content)
+      : root;
+    const items: YTNode[] = [];
+
+    function read(contents: YTNode[], section_list = false): void {
+      for (const node of contents) {
+        if (node.is(SectionList)) {
+          read(node.contents, true);
+        } else if (node.is(ItemSection)) {
+          read(node.contents);
+        } else if (node.is(PlaylistVideoList)) {
+          read(node.videos);
+        } else if (!section_list || !node.is(ContinuationItem, ContinuationItemView)) {
+          items.push(node);
+        }
+      }
+    }
+
+    read(update?.contents ?? (listing ? [ listing ] : []));
+    return observe(items);
   }
 
   #getStat(index: number, primary_info?: PlaylistSidebarPrimaryInfo): string {
