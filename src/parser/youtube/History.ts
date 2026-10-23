@@ -109,7 +109,7 @@ export default class History extends Feed<IBrowseResponse> {
     let self: History = this;
 
     for (let remaining = pages_to_load; remaining > 0; remaining--) {
-      const feedbackEndpoint = findRemoveEndpoint(self.sections, video_id);
+      const feedbackEndpoint = this.#findRemoveFeedbackEndpoint(self.sections, video_id);
 
       if (feedbackEndpoint) {
         return self.#submitFeedback(feedbackEndpoint);
@@ -124,6 +124,54 @@ export default class History extends Feed<IBrowseResponse> {
     }
 
     throw new Error(`Video not found in watch history (ID: ${video_id})`);
+  }
+
+  #findRemoveFeedbackEndpoint(
+    sections: ObservedArray<ItemSection>,
+    video_id: string
+  ): NavigationEndpoint | undefined {
+    for (const section of sections) {
+      for (const content of section.contents) {
+        if (content.is(Video) && content.video_id === video_id && content.menu) {
+          const removeButton = content.menu.items.find(
+            (item) => item.is(MenuServiceItem) && item.icon_type === 'DELETE'
+          )?.as(MenuServiceItem);
+
+          const endpoint = removeButton?.endpoint;
+
+          if (endpoint)
+            return endpoint;
+
+        } else if (content.is(LockupView) && content.content_id === video_id) {
+          const openMenuCommand = content.metadata?.menu_button?.on_tap?.command;
+
+          if (
+            openMenuCommand?.is(ShowSheetCommand) &&
+            openMenuCommand.inline_content?.is(SheetView) &&
+            openMenuCommand.inline_content.content?.is(ListView)
+          ) {
+            const removeButton = openMenuCommand.inline_content.content.items.find(
+              (item) =>
+                item.is(ListItemView) &&
+                item.leading_image[0].client_resource?.image_name === 'DELETE'
+            )?.as(ListItemView);
+
+            const endpoint = removeButton?.renderer_context?.command_context?.on_tap;
+
+            if (endpoint?.command?.is(FeedbackEndpoint))
+              return endpoint;
+
+            if (
+              endpoint?.command?.is(ConfirmDialogEndpoint) &&
+              endpoint.command.content?.confirm_endpoint?.is(FeedbackEndpoint)
+            )
+              return endpoint.command.content.confirm_endpoint;
+          }
+        }
+      }
+    }
+
+    return undefined;
   }
 
   #watchHistoryFeedbackEndpoint(action: 'clear' | 'pause' | 'resume'): NavigationEndpoint | undefined {
@@ -154,52 +202,4 @@ export default class History extends Feed<IBrowseResponse> {
 
     return Boolean(response.data.feedbackResponses?.[0]?.isProcessed);
   }
-}
-
-function findRemoveEndpoint(
-  sections: ObservedArray<ItemSection>,
-  video_id: string
-): NavigationEndpoint | undefined {
-  for (const section of sections) {
-    for (const content of section.contents) {
-      if (content.is(Video) && content.video_id === video_id && content.menu) {
-        const removeButton = content.menu.items.find(
-          (item) => item.is(MenuServiceItem) && item.icon_type === 'DELETE'
-        )?.as(MenuServiceItem);
-
-        const endpoint = removeButton?.endpoint;
-
-        if (endpoint)
-          return endpoint;
-
-      } else if (content.is(LockupView) && content.content_id === video_id) {
-        const openMenuCommand = content.metadata?.menu_button?.on_tap?.command;
-
-        if (
-          openMenuCommand?.is(ShowSheetCommand) &&
-          openMenuCommand.inline_content?.is(SheetView) &&
-          openMenuCommand.inline_content.content?.is(ListView)
-        ) {
-          const removeButton = openMenuCommand.inline_content.content.items.find(
-            (item) =>
-              item.is(ListItemView) &&
-              item.leading_image[0].client_resource?.image_name === 'DELETE'
-          )?.as(ListItemView);
-
-          const endpoint = removeButton?.renderer_context?.command_context?.on_tap;
-
-          if (endpoint?.command?.is(FeedbackEndpoint))
-            return endpoint;
-
-          if (
-            endpoint?.command?.is(ConfirmDialogEndpoint) &&
-            endpoint.command.content?.confirm_endpoint?.is(FeedbackEndpoint)
-          )
-            return endpoint.command.content.confirm_endpoint;
-        }
-      }
-    }
-  }
-
-  return undefined;
 }
