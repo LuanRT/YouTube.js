@@ -9,7 +9,7 @@ import ThumbnailOverlayBadgeView from './ThumbnailOverlayBadgeView.ts';
 import RendererContext from './misc/RendererContext.ts';
 
 export type LockupContentType = 'UNSPECIFIED' | 'VIDEO' | 'PLAYLIST' | 'SHORT' | 'CHANNEL' | 'ALBUM' |
-  'PRODUCT' | 'GAME' | 'CLIP' | 'PODCAST' | 'SOURCE' | 'SHOPPING_COLLECTION' | 'MOVIE' | 'STATION' | 'SHOW';
+  'PRODUCT' | 'GAME' | 'CLIP' | 'PODCAST' | 'SOURCE' | 'SHOPPING_COLLECTION' | 'MOVIE' | 'STATION' | 'SHOW' | 'COURSE';
 
 export interface LockupStyling {
   layout?: string;

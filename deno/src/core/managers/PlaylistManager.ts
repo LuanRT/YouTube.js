@@ -16,8 +16,10 @@ export default class PlaylistManager {
    * Creates a playlist.
    * @param title - The title of the playlist.
    * @param video_ids - An array of video IDs to add to the playlist.
+   * @param privacy_status - The privacy of the playlist.
+   * @param description - The description of the playlist.
    */
-  async create(title: string, video_ids: string[]): Promise<{ success: boolean; status_code: number; playlist_id?: string; data: any }> {
+  async create(title: string, video_ids: string[], privacy_status?: 'PUBLIC' | 'PRIVATE' | 'UNLISTED', description?: string): Promise<{ success: boolean; status_code: number; playlist_id?: string; data: any }> {
     throwIfMissing({ title, video_ids });
 
     if (!this.#actions.session.logged_in)
@@ -26,7 +28,9 @@ export default class PlaylistManager {
     const create_playlist_endpoint = new NavigationEndpoint({
       createPlaylistServiceEndpoint: {
         title,
-        videoIds: video_ids
+        videoIds: video_ids,
+        ...(privacy_status ? { privacyStatus: privacy_status } : {}),
+        ...(description ? { description } : {})
       }
     });
 
