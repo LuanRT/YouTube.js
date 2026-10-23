@@ -1,5 +1,15 @@
 # Changelog
 
+## [18.3.0](https://github.com/LuanRT/YouTube.js/compare/v18.2.0...v18.3.0) (2026-10-23)
+
+
+### Features
+
+* **History:** Implement watch history controls ([#1304](https://github.com/LuanRT/YouTube.js/issues/1304)) ([873d173](https://github.com/LuanRT/YouTube.js/commit/873d1734e8ad37429a0d184edb526d35fd771bea))
+* **LockupView:** Add course as possible `content_type` ([#1313](https://github.com/LuanRT/YouTube.js/issues/1313)) ([5de9e5e](https://github.com/LuanRT/YouTube.js/commit/5de9e5e2b89cb63a460c681ca87f202f6d96840e))
+* **PlaylistManager:** add support for `privacy_status` and `description` when creating a playlist ([#1310](https://github.com/LuanRT/YouTube.js/issues/1310)) ([1c5d1ad](https://github.com/LuanRT/YouTube.js/commit/1c5d1ad3b15c17add12e26392332d0f55113732f))
+* **ThumbnailOverlayTimeStatus:** Add `icon_type` ([#1314](https://github.com/LuanRT/YouTube.js/issues/1314)) ([04cd4db](https://github.com/LuanRT/YouTube.js/commit/04cd4db88707264b67e6c178255083da69007d11))
+
 ## [18.2.0](https://github.com/LuanRT/YouTube.js/compare/v18.1.0...v18.2.0) (2026-10-18)
 
 
