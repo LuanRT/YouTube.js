@@ -63,9 +63,7 @@ All contributions are welcome, big or small. If you want to contribute, take a l
 </a>
 
 ## Disclaimer
-This project is not affiliated with, endorsed, or sponsored by YouTube or any of its affiliates or subsidiaries. All trademarks, logos, and brand names used in this project are the property of their respective owners and are used solely to describe the services provided.
-
-As such, any usage of trademarks to refer to such services is considered nominative use. If you have any questions or concerns, please contact me.
+This project is not affiliated with, endorsed, or sponsored by YouTube or any of its affiliates or subsidiaries.
 
 ## License
 Distributed under the [MIT](https://choosealicense.com/licenses/mit/) License.
