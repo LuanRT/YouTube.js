@@ -52,6 +52,15 @@ import { Innertube } from 'youtubei.js';
 const innertube = await Innertube.create(/* options */);
 ```
 
+### Cloudflare Workers
+
+A dedicated entrypoint is available for Cloudflare Workers and similar edge runtimes. It uses the Workers [Cache API](https://developers.cloudflare.com/workers/runtime-apis/cache/) for caching and the global `fetch`:
+
+```ts
+import { Innertube } from 'youtubei.js/cf-worker';
+const innertube = await Innertube.create(/* options */);
+```
+
 For detailed usage, read the [YouTube.js Guide and API Documentation](https://ytjs.dev).
 
 ## Contributing
