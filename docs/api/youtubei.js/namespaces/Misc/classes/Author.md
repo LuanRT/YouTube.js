@@ -2,7 +2,7 @@
 
 # Class: Author
 
-Defined in: [src/parser/classes/misc/Author.ts:12](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/misc/Author.ts#L12)
+Defined in: [src/parser/classes/misc/Author.ts:12](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/misc/Author.ts#L12)
 
 ## Constructors
 
@@ -10,7 +10,7 @@ Defined in: [src/parser/classes/misc/Author.ts:12](https://github.com/LuanRT/You
 
 > **new Author**(`item`, `badges?`, `thumbs?`, `id?`): `Author`
 
-Defined in: [src/parser/classes/misc/Author.ts:26](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/misc/Author.ts#L26)
+Defined in: [src/parser/classes/misc/Author.ts:26](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/misc/Author.ts#L26)
 
 #### Parameters
 
@@ -40,7 +40,7 @@ Defined in: [src/parser/classes/misc/Author.ts:26](https://github.com/LuanRT/You
 
 > `optional` **avatar\_thumbnail\_url?**: `string`
 
-Defined in: [src/parser/classes/misc/Author.ts:18](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/misc/Author.ts#L18)
+Defined in: [src/parser/classes/misc/Author.ts:18](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/misc/Author.ts#L18)
 
 ***
 
@@ -48,7 +48,7 @@ Defined in: [src/parser/classes/misc/Author.ts:18](https://github.com/LuanRT/You
 
 > **badges**: [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`YTNode`](../../Helpers/classes/YTNode.md)\>
 
-Defined in: [src/parser/classes/misc/Author.ts:17](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/misc/Author.ts#L17)
+Defined in: [src/parser/classes/misc/Author.ts:17](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/misc/Author.ts#L17)
 
 ***
 
@@ -56,7 +56,7 @@ Defined in: [src/parser/classes/misc/Author.ts:17](https://github.com/LuanRT/You
 
 > `optional` **endpoint?**: [`NavigationEndpoint`](../../YTNodes/classes/NavigationEndpoint.md)
 
-Defined in: [src/parser/classes/misc/Author.ts:16](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/misc/Author.ts#L16)
+Defined in: [src/parser/classes/misc/Author.ts:16](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/misc/Author.ts#L16)
 
 ***
 
@@ -64,7 +64,7 @@ Defined in: [src/parser/classes/misc/Author.ts:16](https://github.com/LuanRT/You
 
 > **id**: `string`
 
-Defined in: [src/parser/classes/misc/Author.ts:13](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/misc/Author.ts#L13)
+Defined in: [src/parser/classes/misc/Author.ts:13](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/misc/Author.ts#L13)
 
 ***
 
@@ -72,7 +72,7 @@ Defined in: [src/parser/classes/misc/Author.ts:13](https://github.com/LuanRT/You
 
 > `optional` **is\_creator?**: `boolean`
 
-Defined in: [src/parser/classes/misc/Author.ts:21](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/misc/Author.ts#L21)
+Defined in: [src/parser/classes/misc/Author.ts:21](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/misc/Author.ts#L21)
 
 ***
 
@@ -80,7 +80,7 @@ Defined in: [src/parser/classes/misc/Author.ts:21](https://github.com/LuanRT/You
 
 > `optional` **is\_current\_user?**: `boolean`
 
-Defined in: [src/parser/classes/misc/Author.ts:19](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/misc/Author.ts#L19)
+Defined in: [src/parser/classes/misc/Author.ts:19](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/misc/Author.ts#L19)
 
 ***
 
@@ -88,7 +88,7 @@ Defined in: [src/parser/classes/misc/Author.ts:19](https://github.com/LuanRT/You
 
 > `optional` **is\_moderator?**: `boolean`
 
-Defined in: [src/parser/classes/misc/Author.ts:22](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/misc/Author.ts#L22)
+Defined in: [src/parser/classes/misc/Author.ts:22](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/misc/Author.ts#L22)
 
 ***
 
@@ -96,7 +96,7 @@ Defined in: [src/parser/classes/misc/Author.ts:22](https://github.com/LuanRT/You
 
 > `optional` **is\_public\_subscriber?**: `boolean`
 
-Defined in: [src/parser/classes/misc/Author.ts:20](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/misc/Author.ts#L20)
+Defined in: [src/parser/classes/misc/Author.ts:20](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/misc/Author.ts#L20)
 
 ***
 
@@ -104,7 +104,7 @@ Defined in: [src/parser/classes/misc/Author.ts:20](https://github.com/LuanRT/You
 
 > `optional` **is\_verified?**: `boolean`
 
-Defined in: [src/parser/classes/misc/Author.ts:23](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/misc/Author.ts#L23)
+Defined in: [src/parser/classes/misc/Author.ts:23](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/misc/Author.ts#L23)
 
 ***
 
@@ -112,7 +112,7 @@ Defined in: [src/parser/classes/misc/Author.ts:23](https://github.com/LuanRT/You
 
 > `optional` **is\_verified\_artist?**: `boolean`
 
-Defined in: [src/parser/classes/misc/Author.ts:24](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/misc/Author.ts#L24)
+Defined in: [src/parser/classes/misc/Author.ts:24](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/misc/Author.ts#L24)
 
 ***
 
@@ -120,7 +120,7 @@ Defined in: [src/parser/classes/misc/Author.ts:24](https://github.com/LuanRT/You
 
 > **name**: `string`
 
-Defined in: [src/parser/classes/misc/Author.ts:14](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/misc/Author.ts#L14)
+Defined in: [src/parser/classes/misc/Author.ts:14](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/misc/Author.ts#L14)
 
 ***
 
@@ -128,7 +128,7 @@ Defined in: [src/parser/classes/misc/Author.ts:14](https://github.com/LuanRT/You
 
 > **thumbnails**: [`Thumbnail`](Thumbnail.md)[]
 
-Defined in: [src/parser/classes/misc/Author.ts:15](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/misc/Author.ts#L15)
+Defined in: [src/parser/classes/misc/Author.ts:15](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/misc/Author.ts#L15)
 
 ## Accessors
 
@@ -138,7 +138,7 @@ Defined in: [src/parser/classes/misc/Author.ts:15](https://github.com/LuanRT/You
 
 > **get** **best\_thumbnail**(): [`Thumbnail`](Thumbnail.md) \| `undefined`
 
-Defined in: [src/parser/classes/misc/Author.ts:84](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/misc/Author.ts#L84)
+Defined in: [src/parser/classes/misc/Author.ts:84](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/misc/Author.ts#L84)
 
 ##### Returns
 
@@ -152,7 +152,7 @@ Defined in: [src/parser/classes/misc/Author.ts:84](https://github.com/LuanRT/You
 
 > **get** **collaborators**(): [`ListItemView`](../../YTNodes/classes/ListItemView.md)[]
 
-Defined in: [src/parser/classes/misc/Author.ts:88](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/misc/Author.ts#L88)
+Defined in: [src/parser/classes/misc/Author.ts:88](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/misc/Author.ts#L88)
 
 ##### Returns
 
@@ -166,7 +166,7 @@ Defined in: [src/parser/classes/misc/Author.ts:88](https://github.com/LuanRT/You
 
 > **get** **url**(): `string` \| `undefined`
 
-Defined in: [src/parser/classes/misc/Author.ts:80](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/misc/Author.ts#L80)
+Defined in: [src/parser/classes/misc/Author.ts:80](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/misc/Author.ts#L80)
 
 ##### Returns
 

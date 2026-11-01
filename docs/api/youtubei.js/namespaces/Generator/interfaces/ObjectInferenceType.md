@@ -2,7 +2,7 @@
 
 # Interface: ObjectInferenceType
 
-Defined in: [src/parser/generator.ts:37](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/generator.ts#L37)
+Defined in: [src/parser/generator.ts:37](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/generator.ts#L37)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/parser/generator.ts:37](https://github.com/LuanRT/YouTube.js/bl
 
 > **keys**: [`KeyInfo`](../type-aliases/KeyInfo.md)
 
-Defined in: [src/parser/generator.ts:39](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/generator.ts#L39)
+Defined in: [src/parser/generator.ts:39](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/generator.ts#L39)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [src/parser/generator.ts:39](https://github.com/LuanRT/YouTube.js/bl
 
 > **optional**: `boolean`
 
-Defined in: [src/parser/generator.ts:40](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/generator.ts#L40)
+Defined in: [src/parser/generator.ts:40](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/generator.ts#L40)
 
 ***
 
@@ -26,4 +26,4 @@ Defined in: [src/parser/generator.ts:40](https://github.com/LuanRT/YouTube.js/bl
 
 > **type**: `"object"`
 
-Defined in: [src/parser/generator.ts:38](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/generator.ts#L38)
+Defined in: [src/parser/generator.ts:38](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/generator.ts#L38)

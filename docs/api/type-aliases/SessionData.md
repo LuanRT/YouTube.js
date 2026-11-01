@@ -4,7 +4,7 @@
 
 > **SessionData** = `object`
 
-Defined in: [src/core/Session.ts:224](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/Session.ts#L224)
+Defined in: [src/core/Session.ts:224](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/core/Session.ts#L224)
 
 ## Properties
 
@@ -12,7 +12,7 @@ Defined in: [src/core/Session.ts:224](https://github.com/LuanRT/YouTube.js/blob/
 
 > **api\_key**: `string`
 
-Defined in: [src/core/Session.ts:226](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/Session.ts#L226)
+Defined in: [src/core/Session.ts:226](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/core/Session.ts#L226)
 
 ***
 
@@ -20,7 +20,7 @@ Defined in: [src/core/Session.ts:226](https://github.com/LuanRT/YouTube.js/blob/
 
 > **api\_version**: `string`
 
-Defined in: [src/core/Session.ts:227](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/Session.ts#L227)
+Defined in: [src/core/Session.ts:227](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/core/Session.ts#L227)
 
 ***
 
@@ -28,7 +28,7 @@ Defined in: [src/core/Session.ts:227](https://github.com/LuanRT/YouTube.js/blob/
 
 > `optional` **config\_data?**: `string`
 
-Defined in: [src/core/Session.ts:228](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/Session.ts#L228)
+Defined in: [src/core/Session.ts:228](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/core/Session.ts#L228)
 
 ***
 
@@ -36,4 +36,4 @@ Defined in: [src/core/Session.ts:228](https://github.com/LuanRT/YouTube.js/blob/
 
 > **context**: [`Context`](Context.md)
 
-Defined in: [src/core/Session.ts:225](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/core/Session.ts#L225)
+Defined in: [src/core/Session.ts:225](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/core/Session.ts#L225)

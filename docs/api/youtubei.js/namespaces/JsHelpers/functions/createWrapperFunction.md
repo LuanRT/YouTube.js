@@ -4,7 +4,7 @@
 
 > **createWrapperFunction**(`analyzer`, `name`, `node`): `string` \| `undefined`
 
-Defined in: [src/utils/javascript/helpers.ts:223](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/javascript/helpers.ts#L223)
+Defined in: [src/utils/javascript/helpers.ts:223](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/utils/javascript/helpers.ts#L223)
 
 Analyzes an AST node to determine if it's a function call or a function
 declaration. Based on that, it then creates a new JavaScript function as

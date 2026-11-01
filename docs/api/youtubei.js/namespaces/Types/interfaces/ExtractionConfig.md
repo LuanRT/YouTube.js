@@ -2,7 +2,7 @@
 
 # Interface: ExtractionConfig
 
-Defined in: [src/utils/javascript/JsAnalyzer.ts:4](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/javascript/JsAnalyzer.ts#L4)
+Defined in: [src/utils/javascript/JsAnalyzer.ts:4](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/utils/javascript/JsAnalyzer.ts#L4)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/utils/javascript/JsAnalyzer.ts:4](https://github.com/LuanRT/You
 
 > `optional` **collectDependencies?**: `boolean`
 
-Defined in: [src/utils/javascript/JsAnalyzer.ts:13](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/javascript/JsAnalyzer.ts#L13)
+Defined in: [src/utils/javascript/JsAnalyzer.ts:13](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/utils/javascript/JsAnalyzer.ts#L13)
 
 When `false`, dependency resolution is not enforced and extractions are marked as ready immediately
 when `stopWhenReady` is true.
@@ -21,7 +21,7 @@ when `stopWhenReady` is true.
 
 > `optional` **friendlyName?**: `string`
 
-Defined in: [src/utils/javascript/JsAnalyzer.ts:33](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/javascript/JsAnalyzer.ts#L33)
+Defined in: [src/utils/javascript/JsAnalyzer.ts:33](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/utils/javascript/JsAnalyzer.ts#L33)
 
 Name for easier identification of extractions.
 
@@ -31,7 +31,7 @@ Name for easier identification of extractions.
 
 > **match**: (`node`) => `boolean` \| `Node`
 
-Defined in: [src/utils/javascript/JsAnalyzer.ts:8](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/javascript/JsAnalyzer.ts#L8)
+Defined in: [src/utils/javascript/JsAnalyzer.ts:8](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/utils/javascript/JsAnalyzer.ts#L8)
 
 Predicate that determines whether the current node should be considered a match.
 
@@ -51,7 +51,7 @@ Predicate that determines whether the current node should be considered a match.
 
 > `optional` **onlyProcessMatchContext?**: `boolean`
 
-Defined in: [src/utils/javascript/JsAnalyzer.ts:29](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/javascript/JsAnalyzer.ts#L29)
+Defined in: [src/utils/javascript/JsAnalyzer.ts:29](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/utils/javascript/JsAnalyzer.ts#L29)
 
 If `true`, dependency collection is limited to the match context node itself.
 
@@ -61,7 +61,7 @@ If `true`, dependency collection is limited to the match context node itself.
 
 > `optional` **stopWhenReady?**: `boolean`
 
-Defined in: [src/utils/javascript/JsAnalyzer.ts:25](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/javascript/JsAnalyzer.ts#L25)
+Defined in: [src/utils/javascript/JsAnalyzer.ts:25](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/utils/javascript/JsAnalyzer.ts#L25)
 
 When `true`, traversal stops once the extraction is matched and all its dependencies (when `collectDependencies=true`) resolve.
 Only useful for small functions/vars without too many dependencies. Deeper dependency trees will usually have the unresolvable

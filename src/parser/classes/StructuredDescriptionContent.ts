@@ -14,32 +14,35 @@ import ExpandableMetadata from './ExpandableMetadata.js';
 import MerchandiseShelf from './MerchandiseShelf.js';
 import HypeFanCreditsSectionView from './HypeFanCreditsSectionView.js';
 import VideoDescriptionYouchatSectionView from './VideoDescriptionYouchatSectionView.js';
+import ItemSection from './ItemSection.js';
+import VideoTitleHeaderView from './VideoTitleHeaderView.js';
+import VideoDescriptionGamingSection from './VideoDescriptionGamingSection.js';
+import CourseProgressView from './CourseProgressView.js';
 import VideoDescriptionChannelSection from './VideoDescriptionChannelSection.js';
 import VideoDescriptionCommentsSection from './VideoDescriptionCommentsSection.js';
-import ItemSection from './ItemSection.js';
 import MacroMarkersListView from './MacroMarkersListView.js';
 
 export default class StructuredDescriptionContent extends YTNode {
   static type = 'StructuredDescriptionContent';
 
   public items: ObservedArray<
-    VideoDescriptionHeader | ExpandableVideoDescriptionBody | VideoDescriptionMusicSection |
-    VideoDescriptionInfocardsSection | VideoDescriptionTranscriptSection | VideoDescriptionCourseSection |
-    VideoDescriptionChannelSection | VideoDescriptionCommentsSection | VideoDescriptionYouchatSectionView |
-    HorizontalCardList | ReelShelf | VideoAttributesSectionView |
-    HowThisWasMadeSectionView | ExpandableMetadata | MerchandiseShelf | HypeFanCreditsSectionView |
-    ItemSection | MacroMarkersListView
+    VideoTitleHeaderView | VideoDescriptionHeader | VideoDescriptionGamingSection | ExpandableVideoDescriptionBody |
+    VideoDescriptionMusicSection | VideoDescriptionInfocardsSection | VideoDescriptionTranscriptSection |
+    VideoDescriptionCourseSection | VideoDescriptionChannelSection | VideoDescriptionCommentsSection |
+    VideoDescriptionYouchatSectionView | HorizontalCardList | ReelShelf |
+    VideoAttributesSectionView | HowThisWasMadeSectionView | ExpandableMetadata | MerchandiseShelf |
+    HypeFanCreditsSectionView | ItemSection | CourseProgressView | MacroMarkersListView
   >;
 
   constructor(data: RawNode) {
     super();
     this.items = Parser.parseArray(data.items, [
-      VideoDescriptionHeader, ExpandableVideoDescriptionBody, VideoDescriptionMusicSection,
-      VideoDescriptionInfocardsSection, VideoDescriptionCourseSection, VideoDescriptionTranscriptSection,
-      VideoDescriptionChannelSection, VideoDescriptionCommentsSection,
-      VideoDescriptionYouchatSectionView, HorizontalCardList, ReelShelf, VideoAttributesSectionView,
-      HowThisWasMadeSectionView, ExpandableMetadata, MerchandiseShelf, HypeFanCreditsSectionView,
-      ItemSection, MacroMarkersListView
+      VideoTitleHeaderView, VideoDescriptionHeader, VideoDescriptionGamingSection, ExpandableVideoDescriptionBody,
+      VideoDescriptionMusicSection, VideoDescriptionInfocardsSection, VideoDescriptionCourseSection,
+      VideoDescriptionTranscriptSection, VideoDescriptionChannelSection, VideoDescriptionCommentsSection,
+      VideoDescriptionYouchatSectionView, HorizontalCardList, ReelShelf,
+      VideoAttributesSectionView, HowThisWasMadeSectionView, ExpandableMetadata, MerchandiseShelf,
+      HypeFanCreditsSectionView, ItemSection, CourseProgressView, MacroMarkersListView
     ]);
   }
 }

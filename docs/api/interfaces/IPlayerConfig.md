@@ -2,7 +2,7 @@
 
 # Interface: IPlayerConfig
 
-Defined in: [src/parser/types/ParsedResponse.ts:128](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/ParsedResponse.ts#L128)
+Defined in: [src/parser/types/ParsedResponse.ts:128](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/ParsedResponse.ts#L128)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:128](https://github.com/LuanRT/Y
 
 > **audio\_config**: `object`
 
-Defined in: [src/parser/types/ParsedResponse.ts:129](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/ParsedResponse.ts#L129)
+Defined in: [src/parser/types/ParsedResponse.ts:129](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/ParsedResponse.ts#L129)
 
 #### enable\_per\_format\_loudness
 
@@ -30,7 +30,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:129](https://github.com/LuanRT/Y
 
 > **media\_common\_config**: `object`
 
-Defined in: [src/parser/types/ParsedResponse.ts:137](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/ParsedResponse.ts#L137)
+Defined in: [src/parser/types/ParsedResponse.ts:137](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/ParsedResponse.ts#L137)
 
 #### dynamic\_readahead\_config
 
@@ -62,7 +62,7 @@ Defined in: [src/parser/types/ParsedResponse.ts:137](https://github.com/LuanRT/Y
 
 > **stream\_selection\_config**: `object`
 
-Defined in: [src/parser/types/ParsedResponse.ts:134](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/ParsedResponse.ts#L134)
+Defined in: [src/parser/types/ParsedResponse.ts:134](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/ParsedResponse.ts#L134)
 
 #### max\_bitrate
 
