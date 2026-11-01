@@ -89,27 +89,7 @@ export default class Innertube {
 
     const session = this.#session;
 
-    const extra_payload: Record<string, any> = {
-      playbackContext: {
-        contentPlaybackContext: {
-          vis: 0,
-          splay: false,
-          lactMilliseconds: '-1',
-          signatureTimestamp: session.player?.signature_timestamp
-        }
-      },
-      client: options?.client
-    };
-
-    if (options?.po_token) {
-      extra_payload.serviceIntegrityDimensions = {
-        poToken: options.po_token
-      };
-    } else if (session.po_token) {
-      extra_payload.serviceIntegrityDimensions = {
-        poToken: session.po_token
-      };
-    }
+    const extra_payload = await this.#getPlaybackPayload(payload.videoId, options);
 
     const watch_response = watch_endpoint.call(session.actions, extra_payload);
     const watch_next_response = watch_next_endpoint.call(session.actions);
@@ -134,7 +114,18 @@ export default class Innertube {
 
     const session = this.#session;
 
-    const extra_payload: Record<string, any> = {
+    const extra_payload = await this.#getPlaybackPayload(video_id, options);
+
+    const watch_response = await watch_endpoint.call(session.actions, extra_payload);
+
+    const cpn = generateRandomString(16);
+
+    return new VideoInfo([ watch_response ], session.actions, cpn);
+  }
+
+  async #getPlaybackPayload(video_id: string, options?: GetVideoInfoOptions): Promise<Record<string, any>> {
+    const session = this.#session;
+    const payload: Record<string, any> = {
       playbackContext: {
         contentPlaybackContext: {
           vis: 0,
@@ -143,24 +134,41 @@ export default class Innertube {
           signatureTimestamp: session.player?.signature_timestamp
         }
       },
-      client: options?.client  
+      client: options?.client
     };
 
-    if (options?.po_token) {
-      extra_payload.serviceIntegrityDimensions = {
-        poToken: options.po_token
+    if (options?.client === 'WEB_EMBEDDED') {
+      const embed_url = new URL(`/embed/${encodeURIComponent(video_id)}`, Constants.URLS.YT_BASE);
+      embed_url.searchParams.set('html5', '1');
+      const response = await session.http.fetch(embed_url, {
+        headers: { Referer: Constants.URLS.GOOGLE_SEARCH_BASE }
+      });
+      const config_text = (await response.text()).match(/ytcfg\.set\s*\(\s*({.+?})\s*\)\s*;/s)?.[1];
+      if (!config_text)
+        throw new InnertubeError('Embedded player configuration missing');
+
+      const config = JSON.parse(config_text);
+      if (config.INNERTUBE_CONTEXT?.client?.clientName !== Constants.CLIENTS.WEB_EMBEDDED.NAME)
+        throw new InnertubeError('Invalid embedded player context');
+
+      payload.context = {
+        ...config.INNERTUBE_CONTEXT,
+        user: session.context.user,
+        thirdParty: {
+          ...config.INNERTUBE_CONTEXT.thirdParty,
+          embedUrl: Constants.URLS.GOOGLE_SEARCH_BASE
+        }
       };
-    } else if (session.po_token) {
-      extra_payload.serviceIntegrityDimensions = {
-        poToken: session.po_token
-      };
+      payload.playbackContext.contentPlaybackContext.encryptedHostFlags = config.WEB_PLAYER_CONTEXT_CONFIGS?.WEB_PLAYER_CONTEXT_CONFIG_ID_EMBEDDED_PLAYER?.encryptedHostFlags;
+      payload.playbackContext.contentPlaybackContext.html5Preference = 'HTML5_PREF_WANTS';
+      delete payload.client;
     }
-    
-    const watch_response = await watch_endpoint.call(session.actions, extra_payload);
 
-    const cpn = generateRandomString(16);
+    const po_token = options?.po_token || session.po_token;
+    if (po_token)
+      payload.serviceIntegrityDimensions = { poToken: po_token };
 
-    return new VideoInfo([ watch_response ], session.actions, cpn);
+    return payload;
   }
 
   async getShortsVideoInfo(video_id: string, client?: InnerTubeClient): Promise<ShortFormVideoInfo> {
