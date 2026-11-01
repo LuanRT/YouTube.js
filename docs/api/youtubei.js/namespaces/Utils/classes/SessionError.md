@@ -2,7 +2,7 @@
 
 # Class: SessionError
 
-Defined in: [src/utils/Utils.ts:57](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/utils/Utils.ts#L57)
+Defined in: [src/utils/Utils.ts:57](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/utils/Utils.ts#L57)
 
 ## Extends
 

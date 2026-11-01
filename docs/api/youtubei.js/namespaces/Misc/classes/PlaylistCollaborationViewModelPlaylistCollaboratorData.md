@@ -2,7 +2,7 @@
 
 # Class: PlaylistCollaborationViewModelPlaylistCollaboratorData
 
-Defined in: [src/parser/classes/misc/PlaylistCollaborationViewModelPlaylistCollaboratorData.ts:4](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/misc/PlaylistCollaborationViewModelPlaylistCollaboratorData.ts#L4)
+Defined in: [src/parser/classes/misc/PlaylistCollaborationViewModelPlaylistCollaboratorData.ts:4](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/misc/PlaylistCollaborationViewModelPlaylistCollaboratorData.ts#L4)
 
 ## Constructors
 
@@ -10,7 +10,7 @@ Defined in: [src/parser/classes/misc/PlaylistCollaborationViewModelPlaylistColla
 
 > **new PlaylistCollaborationViewModelPlaylistCollaboratorData**(`data`): `PlaylistCollaborationViewModelPlaylistCollaboratorData`
 
-Defined in: [src/parser/classes/misc/PlaylistCollaborationViewModelPlaylistCollaboratorData.ts:9](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/misc/PlaylistCollaborationViewModelPlaylistCollaboratorData.ts#L9)
+Defined in: [src/parser/classes/misc/PlaylistCollaborationViewModelPlaylistCollaboratorData.ts:9](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/misc/PlaylistCollaborationViewModelPlaylistCollaboratorData.ts#L9)
 
 #### Parameters
 
@@ -28,7 +28,7 @@ Defined in: [src/parser/classes/misc/PlaylistCollaborationViewModelPlaylistColla
 
 > **collaborator\_content\_list\_item**: [`YTNode`](../../Helpers/classes/YTNode.md) \| `null`
 
-Defined in: [src/parser/classes/misc/PlaylistCollaborationViewModelPlaylistCollaboratorData.ts:7](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/misc/PlaylistCollaborationViewModelPlaylistCollaboratorData.ts#L7)
+Defined in: [src/parser/classes/misc/PlaylistCollaborationViewModelPlaylistCollaboratorData.ts:7](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/misc/PlaylistCollaborationViewModelPlaylistCollaboratorData.ts#L7)
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: [src/parser/classes/misc/PlaylistCollaborationViewModelPlaylistColla
 
 > `optional` **external\_channel\_id?**: `string`
 
-Defined in: [src/parser/classes/misc/PlaylistCollaborationViewModelPlaylistCollaboratorData.ts:6](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/misc/PlaylistCollaborationViewModelPlaylistCollaboratorData.ts#L6)
+Defined in: [src/parser/classes/misc/PlaylistCollaborationViewModelPlaylistCollaboratorData.ts:6](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/misc/PlaylistCollaborationViewModelPlaylistCollaboratorData.ts#L6)
 
 ***
 
@@ -44,4 +44,4 @@ Defined in: [src/parser/classes/misc/PlaylistCollaborationViewModelPlaylistColla
 
 > **remove\_collaborator\_confirmation\_dialog**: [`YTNode`](../../Helpers/classes/YTNode.md) \| `null`
 
-Defined in: [src/parser/classes/misc/PlaylistCollaborationViewModelPlaylistCollaboratorData.ts:5](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/classes/misc/PlaylistCollaborationViewModelPlaylistCollaboratorData.ts#L5)
+Defined in: [src/parser/classes/misc/PlaylistCollaborationViewModelPlaylistCollaboratorData.ts:5](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/misc/PlaylistCollaborationViewModelPlaylistCollaboratorData.ts#L5)

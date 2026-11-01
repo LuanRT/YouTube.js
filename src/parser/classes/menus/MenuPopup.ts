@@ -1,15 +1,15 @@
-import type { ObservedArray } from '../../helpers.js';
-import { YTNode } from '../../helpers.js';
-import type { RawNode } from '../../index.js';
 import { Parser } from '../../index.js';
-import MenuCustomIconItem from './MenuCustomIconItem.js';
+import { YTNode } from '../../helpers.js';
+import type { ObservedArray } from '../../helpers.js';
+import type { RawNode } from '../../index.js';
+import MenuCustomIconItem from '../MenuCustomIconItem.js';
 import MenuNavigationItem from './MenuNavigationItem.js';
 import MenuServiceItem from './MenuServiceItem.js';
 
 export default class MenuPopup extends YTNode {
   static type = 'MenuPopup';
 
-  items: ObservedArray<MenuNavigationItem | MenuServiceItem | MenuCustomIconItem>;
+  public items: ObservedArray<MenuNavigationItem | MenuServiceItem | MenuCustomIconItem>;
 
   constructor(data: RawNode) {
     super();

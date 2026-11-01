@@ -21,7 +21,7 @@ describe('Layout nodes', () => {
       const node = new YTNodes.MenuCustomIconItem(ticket_menu_item);
 
       expect(node.action_text.toString()).toBe('Find on Ticketmaster');
-      expect(node.endpoint.payload.url).toContain('example.test');
+      expect(node.command?.payload.url).toContain('example.test');
     });
 
     test('is accepted inside a menu popup', () => {

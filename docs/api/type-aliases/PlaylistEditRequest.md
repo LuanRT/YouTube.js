@@ -4,7 +4,7 @@
 
 > **PlaylistEditRequest** = `object`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:96](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L96)
+Defined in: [src/parser/types/CommandEndpoints.ts:96](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/CommandEndpoints.ts#L96)
 
 ## Properties
 
@@ -12,7 +12,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:96](https://github.com/LuanRT/
 
 > `optional` **actions?**: `Record`\<`string`, `any`\>[]
 
-Defined in: [src/parser/types/CommandEndpoints.ts:97](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L97)
+Defined in: [src/parser/types/CommandEndpoints.ts:97](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/CommandEndpoints.ts#L97)
 
 ***
 
@@ -20,7 +20,7 @@ Defined in: [src/parser/types/CommandEndpoints.ts:97](https://github.com/LuanRT/
 
 > `optional` **params?**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:99](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L99)
+Defined in: [src/parser/types/CommandEndpoints.ts:99](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/CommandEndpoints.ts#L99)
 
 ***
 
@@ -28,4 +28,4 @@ Defined in: [src/parser/types/CommandEndpoints.ts:99](https://github.com/LuanRT/
 
 > `optional` **playlistId?**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:98](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/types/CommandEndpoints.ts#L98)
+Defined in: [src/parser/types/CommandEndpoints.ts:98](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/CommandEndpoints.ts#L98)

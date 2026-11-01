@@ -6,7 +6,7 @@
 
 > **parseArray**\<`T`, `K`\>(`data`, `validTypes`): [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<`InstanceType`\<`K`\[`number`\]\>\>
 
-Defined in: [src/parser/parser.ts:634](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/parser.ts#L634)
+Defined in: [src/parser/parser.ts:632](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/parser.ts#L632)
 
 Parses an array of items.
 
@@ -42,7 +42,7 @@ YTNode types that are allowed to be parsed.
 
 > **parseArray**\<`T`\>(`data`, `validType`): [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<`T`\>
 
-Defined in: [src/parser/parser.ts:635](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/parser.ts#L635)
+Defined in: [src/parser/parser.ts:633](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/parser.ts#L633)
 
 Parses an array of items.
 
@@ -72,7 +72,7 @@ The data to parse.
 
 > **parseArray**(`data`): [`ObservedArray`](../../Helpers/type-aliases/ObservedArray.md)\<[`YTNode`](../../Helpers/classes/YTNode.md)\>
 
-Defined in: [src/parser/parser.ts:636](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/parser/parser.ts#L636)
+Defined in: [src/parser/parser.ts:634](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/parser.ts#L634)
 
 Parses an array of items.
 

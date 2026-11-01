@@ -4,7 +4,7 @@
 
 > **MusicSearchFilters** = `object`
 
-Defined in: [src/types/Misc.ts:42](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/types/Misc.ts#L42)
+Defined in: [src/types/Misc.ts:42](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/types/Misc.ts#L42)
 
 ## Properties
 
@@ -12,4 +12,4 @@ Defined in: [src/types/Misc.ts:42](https://github.com/LuanRT/YouTube.js/blob/06b
 
 > `optional` **type?**: [`MusicSearchType`](MusicSearchType.md)
 
-Defined in: [src/types/Misc.ts:43](https://github.com/LuanRT/YouTube.js/blob/06bfc6afd419ea622aac9ce491b749456ebda028/src/types/Misc.ts#L43)
+Defined in: [src/types/Misc.ts:43](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/types/Misc.ts#L43)
