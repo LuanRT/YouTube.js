@@ -17,3 +17,4 @@ export { default as Text } from './classes/misc/Text.js';
 export { default as TextRun } from './classes/misc/TextRun.js';
 export { default as Thumbnail } from './classes/misc/Thumbnail.js';
 export { default as VideoDetails } from './classes/misc/VideoDetails.js';
+export { default as WatchNextContinuation } from './classes/misc/WatchNextContinuation.js';
