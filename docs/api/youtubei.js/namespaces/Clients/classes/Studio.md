@@ -2,7 +2,7 @@
 
 # Class: Studio
 
-Defined in: [src/core/clients/Studio.ts:22](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/clients/Studio.ts#L22)
+Defined in: [src/core/clients/Studio.ts:22](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/core/clients/Studio.ts#L22)
 
 ## Constructors
 
@@ -10,7 +10,7 @@ Defined in: [src/core/clients/Studio.ts:22](https://github.com/LuanRT/YouTube.js
 
 > **new Studio**(`session`): `Studio`
 
-Defined in: [src/core/clients/Studio.ts:25](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/clients/Studio.ts#L25)
+Defined in: [src/core/clients/Studio.ts:25](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/core/clients/Studio.ts#L25)
 
 #### Parameters
 
@@ -28,7 +28,7 @@ Defined in: [src/core/clients/Studio.ts:25](https://github.com/LuanRT/YouTube.js
 
 > **updateVideoMetadata**(`video_id`, `metadata`): `Promise`\<[`ApiResponse`](../../../../interfaces/ApiResponse.md)\>
 
-Defined in: [src/core/clients/Studio.ts:47](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/clients/Studio.ts#L47)
+Defined in: [src/core/clients/Studio.ts:47](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/core/clients/Studio.ts#L47)
 
 Updates the metadata of a video.
 
@@ -69,7 +69,7 @@ const response = await yt.studio.updateVideoMetadata(videoId, {
 
 > **upload**(`file`, `metadata?`): `Promise`\<[`ApiResponse`](../../../../interfaces/ApiResponse.md)\>
 
-Defined in: [src/core/clients/Studio.ts:150](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/core/clients/Studio.ts#L150)
+Defined in: [src/core/clients/Studio.ts:150](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/core/clients/Studio.ts#L150)
 
 Uploads a video to YouTube.
 

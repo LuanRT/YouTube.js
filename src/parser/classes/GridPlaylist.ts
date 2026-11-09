@@ -15,6 +15,7 @@ export default class GridPlaylist extends YTNode {
   endpoint: NavigationEndpoint;
   view_playlist: Text;
   thumbnails: Thumbnail[];
+  thumbnail_overlays: ObservedArray<YTNode>;
   thumbnail_renderer;
   sidebar_thumbnails: Thumbnail[] | null;
   video_count: Text;
@@ -33,6 +34,7 @@ export default class GridPlaylist extends YTNode {
     this.endpoint = new NavigationEndpoint(data.navigationEndpoint);
     this.view_playlist = new Text(data.viewPlaylistText);
     this.thumbnails = Thumbnail.fromResponse(data.thumbnail);
+    this.thumbnail_overlays = Parser.parseArray(data.thumbnailOverlays);
     this.thumbnail_renderer = Parser.parseItem(data.thumbnailRenderer);
     this.sidebar_thumbnails = [].concat(...data.sidebarThumbnails?.map((thumbnail: any) => Thumbnail.fromResponse(thumbnail)) || []) || null;
     this.video_count = new Text(data.thumbnailText);

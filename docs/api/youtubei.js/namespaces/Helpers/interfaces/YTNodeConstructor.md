@@ -2,7 +2,7 @@
 
 # Interface: YTNodeConstructor\<T\>
 
-Defined in: [src/parser/helpers.ts:310](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L310)
+Defined in: [src/parser/helpers.ts:310](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L310)
 
 ## Type Parameters
 
@@ -16,7 +16,7 @@ Defined in: [src/parser/helpers.ts:310](https://github.com/LuanRT/YouTube.js/blo
 
 > **new YTNodeConstructor**(`data`): `T`
 
-Defined in: [src/parser/helpers.ts:311](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L311)
+Defined in: [src/parser/helpers.ts:311](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L311)
 
 #### Parameters
 
@@ -34,4 +34,4 @@ Defined in: [src/parser/helpers.ts:311](https://github.com/LuanRT/YouTube.js/blo
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:312](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L312)
+Defined in: [src/parser/helpers.ts:312](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L312)

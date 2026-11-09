@@ -266,3 +266,15 @@ message CommunityPostCommentsParam {
   string title = 2;
   CommentDataContainer comment_data_container = 53;
 }
+
+message ClipParams {
+  message ClipParamsData {
+    string clip_id = 1;
+    int32 start_time = 2;
+    int32 end_time = 3;
+    string clip_title = 4;
+    string clip_metadata = 5;
+  }
+
+  ClipParamsData clip_params_data = 50;
+}

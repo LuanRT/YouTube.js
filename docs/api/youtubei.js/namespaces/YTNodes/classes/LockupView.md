@@ -2,7 +2,7 @@
 
 # Class: LockupView
 
-Defined in: [src/parser/classes/LockupView.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/LockupView.ts#L8)
+Defined in: [src/parser/classes/LockupView.ts:19](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/LockupView.ts#L19)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/parser/classes/LockupView.ts:8](https://github.com/LuanRT/YouTu
 
 > **new LockupView**(`data`): `LockupView`
 
-Defined in: [src/parser/classes/LockupView.ts:17](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/LockupView.ts#L17)
+Defined in: [src/parser/classes/LockupView.ts:29](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/LockupView.ts#L29)
 
 #### Parameters
 
@@ -32,11 +32,11 @@ Defined in: [src/parser/classes/LockupView.ts:17](https://github.com/LuanRT/YouT
 
 ## Properties
 
-### content\_id
+### content\_id?
 
-> **content\_id**: `string`
+> `optional` **content\_id?**: `string`
 
-Defined in: [src/parser/classes/LockupView.ts:13](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/LockupView.ts#L13)
+Defined in: [src/parser/classes/LockupView.ts:24](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/LockupView.ts#L24)
 
 ***
 
@@ -44,15 +44,15 @@ Defined in: [src/parser/classes/LockupView.ts:13](https://github.com/LuanRT/YouT
 
 > **content\_image**: [`ThumbnailView`](ThumbnailView.md) \| [`CollectionThumbnailView`](CollectionThumbnailView.md) \| `null`
 
-Defined in: [src/parser/classes/LockupView.ts:11](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/LockupView.ts#L11)
+Defined in: [src/parser/classes/LockupView.ts:22](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/LockupView.ts#L22)
 
 ***
 
 ### content\_type
 
-> **content\_type**: `"UNSPECIFIED"` \| `"VIDEO"` \| `"PLAYLIST"` \| `"SHORT"` \| `"CHANNEL"` \| `"ALBUM"` \| `"PRODUCT"` \| `"GAME"` \| `"CLIP"` \| `"PODCAST"` \| `"SOURCE"` \| `"SHOPPING_COLLECTION"` \| `"MOVIE"`
+> **content\_type**: `LockupContentType`
 
-Defined in: [src/parser/classes/LockupView.ts:14](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/LockupView.ts#L14)
+Defined in: [src/parser/classes/LockupView.ts:25](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/LockupView.ts#L25)
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: [src/parser/classes/LockupView.ts:14](https://github.com/LuanRT/YouT
 
 > **metadata**: [`LockupMetadataView`](LockupMetadataView.md) \| `null`
 
-Defined in: [src/parser/classes/LockupView.ts:12](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/LockupView.ts#L12)
+Defined in: [src/parser/classes/LockupView.ts:23](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/LockupView.ts#L23)
 
 ***
 
@@ -68,7 +68,15 @@ Defined in: [src/parser/classes/LockupView.ts:12](https://github.com/LuanRT/YouT
 
 > **renderer\_context**: [`RendererContext`](../../Misc/classes/RendererContext.md)
 
-Defined in: [src/parser/classes/LockupView.ts:15](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/LockupView.ts#L15)
+Defined in: [src/parser/classes/LockupView.ts:27](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/LockupView.ts#L27)
+
+***
+
+### styling?
+
+> `optional` **styling?**: `LockupStyling`
+
+Defined in: [src/parser/classes/LockupView.ts:26](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/LockupView.ts#L26)
 
 ***
 
@@ -76,7 +84,7 @@ Defined in: [src/parser/classes/LockupView.ts:15](https://github.com/LuanRT/YouT
 
 > `readonly` **type**: `string`
 
-Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L8)
+Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L8)
 
 #### Inherited from
 
@@ -88,11 +96,33 @@ Defined in: [src/parser/helpers.ts:8](https://github.com/LuanRT/YouTube.js/blob/
 
 > `static` **type**: `string` = `'LockupView'`
 
-Defined in: [src/parser/classes/LockupView.ts:9](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/classes/LockupView.ts#L9)
+Defined in: [src/parser/classes/LockupView.ts:20](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/LockupView.ts#L20)
 
 #### Overrides
 
 [`YTNode`](../../Helpers/classes/YTNode.md).[`type`](../../Helpers/classes/YTNode.md#type-1)
+
+## Accessors
+
+### duration
+
+#### Get Signature
+
+> **get** **duration**(): `object`
+
+Defined in: [src/parser/classes/LockupView.ts:50](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/LockupView.ts#L50)
+
+The video's duration, parsed from its thumbnail overlay badge (e.g. "16:09").
+Returns an empty duration for lockups without one (playlists, channels, live videos, etc.).
+
+##### Returns
+
+`object`
+
+| Name | Type | Defined in |
+| ------ | ------ | ------ |
+| `seconds` | `number` | [src/parser/classes/LockupView.ts:50](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/LockupView.ts#L50) |
+| `text` | `string` | [src/parser/classes/LockupView.ts:50](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/classes/LockupView.ts#L50) |
 
 ## Methods
 
@@ -100,7 +130,7 @@ Defined in: [src/parser/classes/LockupView.ts:9](https://github.com/LuanRT/YouTu
 
 > **as**\<`T`, `K`\>(...`types`): `InstanceType`\<`K`\[`number`\]\>
 
-Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L29)
+Defined in: [src/parser/helpers.ts:29](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L29)
 
 Cast to one of the given types.
 
@@ -142,7 +172,7 @@ If the node is not of the given type
 
 > **hasKey**\<`T`, `R`\>(`key`): `this is LockupView & { [k in string]: R }`
 
-Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L41)
+Defined in: [src/parser/helpers.ts:41](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L41)
 
 Check for a key without asserting the type.
 
@@ -180,7 +210,7 @@ Whether the node has the key
 
 > **is**\<`T`, `K`\>(...`types`): `this is InstanceType<K[number]>`
 
-Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L19)
+Defined in: [src/parser/helpers.ts:19](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L19)
 
 Check if the node is of the given type.
 
@@ -218,7 +248,7 @@ whether the node is of the given type
 
 > **key**\<`T`, `R`\>(`key`): [`Maybe`](../../Helpers/classes/Maybe.md)
 
-Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/helpers.ts#L51)
+Defined in: [src/parser/helpers.ts:51](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/helpers.ts#L51)
 
 Assert that the node has the given key and return it.
 

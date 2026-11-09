@@ -55,7 +55,15 @@ export type LiveMetadata = {
   date?: UpdateDateTextAction;
 }
 
-export default class LiveChat extends EventEmitter {
+export type LiveChatEvents = {
+  start: (initial_data: LiveChatContinuation) => void;
+  'chat-update': (action: ChatAction) => void;
+  'metadata-update': (metadata: LiveMetadata) => void;
+  error: (err: unknown) => void;
+  end: () => void;
+}
+
+export default class LiveChat extends EventEmitter<LiveChatEvents> {
   readonly #actions: Actions;
   readonly #video_id: string;
   readonly #channel_id: string;
@@ -103,24 +111,6 @@ export default class LiveChat extends EventEmitter {
         this.#pollLivechat();
       }
     };
-  }
-
-  on(type: 'start', listener: (initial_data: LiveChatContinuation) => void): void;
-  on(type: 'chat-update', listener: (action: ChatAction) => void): void;
-  on(type: 'metadata-update', listener: (metadata: LiveMetadata) => void): void;
-  on(type: 'error', listener: (err: Error) => void): void;
-  on(type: 'end', listener: () => void): void;
-  on(type: string, listener: (...args: any[]) => void): void {
-    super.on(type, listener);
-  }
-
-  once(type: 'start', listener: (initial_data: LiveChatContinuation) => void): void;
-  once(type: 'chat-update', listener: (action: ChatAction) => void): void;
-  once(type: 'metadata-update', listener: (metadata: LiveMetadata) => void): void;
-  once(type: 'error', listener: (err: Error) => void): void;
-  once(type: 'end', listener: () => void): void;
-  once(type: string, listener: (...args: any[]) => void): void {
-    super.once(type, listener);
   }
 
   start() {
@@ -205,7 +195,7 @@ export default class LiveChat extends EventEmitter {
 
     for (const action of action_queue) {
       await this.#wait(emit_delay_ms);
-      this.emit('chat-update', action);
+      this.emit('chat-update', action as any);
     }
   }
 

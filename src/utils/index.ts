@@ -2,7 +2,7 @@ export { default as UniversalCache } from './Cache.js';
 
 export * as Constants from './Constants.js';
 
-export { default as EventEmitter } from './EventEmitterLike.js';
+export { EventEmitterLike as EventEmitter } from './EventEmitterLike.js';
 
 export * as FormatUtils from './FormatUtils.js';
 

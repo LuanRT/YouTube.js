@@ -130,8 +130,14 @@ export default class Text {
     if (command_runs?.length)
       this.processCommandRuns(runs, command_runs, data);
 
-    if (attachment_runs?.length)
-      this.processAttachmentRuns(runs, attachment_runs, data);
+    const normalized_attachment_runs = attachment_runs?.map((run) => ({
+      ...run,
+      startIndex: run.startIndex ?? 0,
+      length: run.length ?? 0
+    }) as AttachmentRun);
+
+    if (normalized_attachment_runs?.length)
+      this.processAttachmentRuns(runs, normalized_attachment_runs, data);
 
     return new Text({ runs });
   }

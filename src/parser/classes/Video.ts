@@ -123,10 +123,14 @@ export default class Video extends YTNode {
   }
 
   get is_live(): boolean {
+    const overlay_time_status = this.thumbnail_overlays.firstOfType(ThumbnailOverlayTimeStatus);
+    if (!overlay_time_status)
+      return true;
+
     return this.badges.some((badge) => {
       if (badge.style === 'BADGE_STYLE_TYPE_LIVE_NOW' || badge.label === 'LIVE')
         return true;
-    }) || this.thumbnail_overlays.firstOfType(ThumbnailOverlayTimeStatus)?.style === 'LIVE';
+    }) || overlay_time_status.style === 'LIVE';
   }
 
   get is_upcoming(): boolean | undefined {

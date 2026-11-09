@@ -6,8 +6,11 @@ export { default as AccessibilityData } from './classes/misc/AccessibilityData.j
 export { default as Author } from './classes/misc/Author.js';
 export { default as ChildElement } from './classes/misc/ChildElement.js';
 export { default as CommandContext } from './classes/misc/CommandContext.js';
+export { default as CommentsContinuation } from './classes/misc/CommentsContinuation.js';
 export { default as EmojiRun } from './classes/misc/EmojiRun.js';
 export { default as Format } from './classes/misc/Format.js';
+export { default as PlaylistCollaborationFormSchema } from './classes/misc/PlaylistCollaborationFormSchema.js';
+export { default as PlaylistCollaborationViewModelPlaylistCollaboratorData } from './classes/misc/PlaylistCollaborationViewModelPlaylistCollaboratorData.js';
 export { default as RendererContext } from './classes/misc/RendererContext.js';
 export { default as SubscriptionButton } from './classes/misc/SubscriptionButton.js';
 export { default as Text } from './classes/misc/Text.js';

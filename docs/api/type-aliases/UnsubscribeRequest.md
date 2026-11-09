@@ -4,28 +4,28 @@
 
 > **UnsubscribeRequest** = `object`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:132](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L132)
+Defined in: [src/parser/types/CommandEndpoints.ts:132](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/CommandEndpoints.ts#L132)
 
 ## Properties
 
 ### channelIds?
 
-> `optional` **channelIds**: `string`[]
+> `optional` **channelIds?**: `string`[]
 
-Defined in: [src/parser/types/CommandEndpoints.ts:133](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L133)
+Defined in: [src/parser/types/CommandEndpoints.ts:133](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/CommandEndpoints.ts#L133)
 
 ***
 
 ### params?
 
-> `optional` **params**: `string`
+> `optional` **params?**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:135](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L135)
+Defined in: [src/parser/types/CommandEndpoints.ts:135](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/CommandEndpoints.ts#L135)
 
 ***
 
 ### siloName?
 
-> `optional` **siloName**: `string`
+> `optional` **siloName?**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:134](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L134)
+Defined in: [src/parser/types/CommandEndpoints.ts:134](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/CommandEndpoints.ts#L134)

@@ -8,6 +8,7 @@ export default class HowThisWasMadeSectionView extends YTNode {
   public section_title?: Text;
   public body_text?: Text;
   public body_header?: Text;
+  public attribution_text?: Text;
 
   constructor(data: RawNode) {
     super();
@@ -17,5 +18,7 @@ export default class HowThisWasMadeSectionView extends YTNode {
       this.body_text = Text.fromAttributed(data.bodyText);
     if (Reflect.has(data, 'bodyHeader'))
       this.body_header = Text.fromAttributed(data.bodyHeader);
+    if (Reflect.has(data, 'attributionText'))
+      this.attribution_text = Text.fromAttributed(data.attributionText);
   }
 }

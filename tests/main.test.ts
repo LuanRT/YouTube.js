@@ -6,7 +6,7 @@ describe('YouTube.js Tests', () => {
   let innertube: Innertube;
 
   beforeAll(async () => {
-    innertube = await Innertube.create({ generate_session_locally: true });
+    innertube = await Innertube.create({ generate_session_locally: false });
   });
 
   describe('Main', () => {
@@ -98,7 +98,7 @@ describe('YouTube.js Tests', () => {
       let comments: YT.Comments;
 
       beforeAll(async () => {
-        comments = await innertube.getComments('OGbhJjXl9Rk');
+        comments = await innertube.getComments('jNQXAC9IVRw');
         expect(comments).toBeDefined();
         expect(comments.header).toBeDefined();
         expect(comments.contents).toBeDefined();
@@ -115,8 +115,8 @@ describe('YouTube.js Tests', () => {
         let loaded_comment_thread: YTNodes.CommentThread;
 
         beforeAll(async () => {
-          let comment_thread = comments.contents.first();
-          loaded_comment_thread = await comment_thread.getReplies();
+          let comment_thread = comments.contents.find((comment) => parseInt(comment.comment?.reply_count || '0') > 20);
+          loaded_comment_thread = await comment_thread!.getReplies();
           expect(loaded_comment_thread.replies).toBeDefined();
         });
 
@@ -268,10 +268,18 @@ describe('YouTube.js Tests', () => {
         expect(hashtag.videos.length).toBeGreaterThan(0);
       });
 
-      test('HashtagFeed#getContinuation', async () => {
-        const incremental_continuation = await hashtag.getContinuation();
-        expect(incremental_continuation).toBeDefined();
-        expect(incremental_continuation.videos.length).toBeGreaterThan(0);
+      // Doesn't look like YouTube serves continuation for hashtag pages anymore.
+      // @TODO: Check this again in the future in case it is a bug on their side.
+      // test('HashtagFeed#getContinuation', async () => {
+      //   const incremental_continuation = await hashtag.getContinuation();
+      //   expect(incremental_continuation).toBeDefined();
+      //   expect(incremental_continuation.videos.length).toBeGreaterThan(0);
+      // });
+
+      test('supports hashtags whose params require URL-safe Base64', async () => {
+        const cyrillic_hashtag = await innertube.getHashtag('биткоин');
+        expect(cyrillic_hashtag).toBeDefined();
+        expect(cyrillic_hashtag.videos.length).toBeGreaterThan(0);
       });
     });
 
@@ -439,7 +447,7 @@ describe('YouTube.js Tests', () => {
     });
 
     test('Innertube#music.getSearchSuggestions', async () => {
-      const suggestions = await innertube.music.getSearchSuggestions('Joji - In Tongues');
+      const suggestions = await innertube.music.getSearchSuggestions('Windows96');
       expect(suggestions).toBeDefined();
       expect(suggestions?.length).toBeGreaterThan(0);
     });

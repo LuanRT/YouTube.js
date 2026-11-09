@@ -4,12 +4,12 @@
 
 > **LiveChatItemContextMenuRequest** = `object`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:152](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L152)
+Defined in: [src/parser/types/CommandEndpoints.ts:152](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/CommandEndpoints.ts#L152)
 
 ## Properties
 
 ### params?
 
-> `optional` **params**: `string`
+> `optional` **params?**: `string`
 
-Defined in: [src/parser/types/CommandEndpoints.ts:153](https://github.com/LuanRT/YouTube.js/blob/853a36307b5d644ada14dcb1216c2c22c2ae7b73/src/parser/types/CommandEndpoints.ts#L153)
+Defined in: [src/parser/types/CommandEndpoints.ts:153](https://github.com/LuanRT/YouTube.js/blob/78375cbf808544d91b0d5df99529a20f4a5a18eb/src/parser/types/CommandEndpoints.ts#L153)

@@ -243,8 +243,16 @@ export const debugFetch: FetchFunction = (input, init) => {
   return Platform.shim.fetch(input, init);
 };
 
-export function u8ToBase64(u8: Uint8Array): string {
-  return btoa(String.fromCharCode.apply(null, Array.from(u8)));
+export function u8ToBase64(u8: Uint8Array, base64url = false): string {
+  const result = btoa(String.fromCharCode(...u8));
+
+  if (base64url) {
+    return result
+      .replace(/\+/g, '-')
+      .replace(/\//g, '_');
+  }
+
+  return result;
 }
 
 export function base64ToU8(base64: string): Uint8Array {

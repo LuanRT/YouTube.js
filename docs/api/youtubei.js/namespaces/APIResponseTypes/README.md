@@ -118,6 +118,12 @@ Re-exports [IGuideResponse](../../../type-aliases/IGuideResponse.md)
 
 ***
 
+### IHeartbeatParams
+
+Re-exports [IHeartbeatParams](../../../interfaces/IHeartbeatParams.md)
+
+***
+
 ### INextResponse
 
 Re-exports [INextResponse](../../../type-aliases/INextResponse.md)
@@ -154,6 +160,12 @@ Re-exports [IPlayerConfig](../../../interfaces/IPlayerConfig.md)
 
 ***
 
+### IPlayerHeartbeatResponse
+
+Re-exports [IPlayerHeartbeatResponse](../../../type-aliases/IPlayerHeartbeatResponse.md)
+
+***
+
 ### IPlayerResponse
 
 Re-exports [IPlayerResponse](../../../type-aliases/IPlayerResponse.md)
@@ -163,6 +175,12 @@ Re-exports [IPlayerResponse](../../../type-aliases/IPlayerResponse.md)
 ### IRawBotguardChallenge
 
 Re-exports [IRawBotguardChallenge](../../../interfaces/IRawBotguardChallenge.md)
+
+***
+
+### IRawHeartbeatParams
+
+Re-exports [IRawHeartbeatParams](../../../interfaces/IRawHeartbeatParams.md)
 
 ***
 
@@ -193,6 +211,12 @@ Re-exports [IResolveURLResponse](../../../type-aliases/IResolveURLResponse.md)
 ### ISearchResponse
 
 Re-exports [ISearchResponse](../../../type-aliases/ISearchResponse.md)
+
+***
+
+### IShowEngagementPanelResponse
+
+Re-exports [IShowEngagementPanelResponse](../../../type-aliases/IShowEngagementPanelResponse.md)
 
 ***
 
@@ -289,6 +313,12 @@ Re-exports [SearchRequest](../../../type-aliases/SearchRequest.md)
 ### ShareEntityServiceRequest
 
 Re-exports [ShareEntityServiceRequest](../../../type-aliases/ShareEntityServiceRequest.md)
+
+***
+
+### ShowEngagementPanelRequest
+
+Re-exports [ShowEngagementPanelRequest](../../../type-aliases/ShowEngagementPanelRequest.md)
 
 ***
 

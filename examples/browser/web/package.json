@@ -12,7 +12,7 @@
   "devDependencies": {
     "patch-package": "^8.0.1",
     "typescript": "^4.6.4",
-    "vite": "^6.4.2"
+    "vite": "^6.4.3"
   },
   "dependencies": {
     "bgutils-js": "^3.1.2",

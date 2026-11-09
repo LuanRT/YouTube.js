@@ -4,6 +4,7 @@ import type { RawNode } from '../types/index.js';
 import BadgeView from './BadgeView.js';
 import Text from './misc/Text.js';
 import Thumbnail from './misc/Thumbnail.js';
+import ThumbnailView from './ThumbnailView.js';
 import NavigationEndpoint from './NavigationEndpoint.js';
 
 export default class ShortsLockupView extends YTNode {
@@ -12,6 +13,7 @@ export default class ShortsLockupView extends YTNode {
   entity_id: string;
   accessibility_text: string;
   thumbnail: Thumbnail[];
+  thumbnail_view_model: ThumbnailView | null;
   on_tap_endpoint: NavigationEndpoint;
   menu_on_tap: NavigationEndpoint;
   index_in_collection: number;
@@ -29,6 +31,7 @@ export default class ShortsLockupView extends YTNode {
     this.entity_id = data.entityId;
     this.accessibility_text = data.accessibilityText;
     this.thumbnail = Thumbnail.fromResponse(data.thumbnail);
+    this.thumbnail_view_model = Parser.parseItem(data.thumbnailViewModel, ThumbnailView);
     this.on_tap_endpoint = new NavigationEndpoint(data.onTap);
     this.menu_on_tap = new NavigationEndpoint(data.menuOnTap);
     this.index_in_collection = data.indexInCollection;

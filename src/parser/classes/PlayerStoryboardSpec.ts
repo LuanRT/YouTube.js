@@ -16,15 +16,20 @@ export interface StoryboardData {
 export default class PlayerStoryboardSpec extends YTNode {
   static type = 'PlayerStoryboardSpec';
 
-  boards: StoryboardData[];
+  public boards: StoryboardData[] = [];
 
   constructor(data: RawNode) {
     super();
 
-    const parts = data.spec.split('|');
-    const url = new URL(parts.shift());
+    const parts = (data.spec as string | undefined)?.split('|');
+    const part = parts?.shift();
 
-    this.boards = parts.map((part: any, i: any) => {
+    if (!part || !part.startsWith('http'))
+      return;
+
+    const url = new URL(part);
+
+    this.boards = parts?.map((part: any, i: any) => {
       const [ thumbnail_width, thumbnail_height, thumbnail_count, columns, rows, interval, name, sigh ] = part.split('#');
 
       url.searchParams.set('sigh', sigh);
@@ -42,6 +47,6 @@ export default class PlayerStoryboardSpec extends YTNode {
         rows: parseInt(rows, 10),
         storyboard_count
       };
-    });
+    }) || [];
   }
 }

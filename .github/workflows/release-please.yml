@@ -12,54 +12,55 @@ permissions:
 
 jobs:
   release-please:
-    permissions:
-      contents: write
-      pull-requests: write
-      id-token: write
     runs-on: ubuntu-latest
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
     steps:
       - uses: googleapis/release-please-action@v4
         id: release
         with:
           release-type: node
           token: ${{ secrets.GITHUB_TOKEN }}
+
+  publish:
+    needs: release-please
+    if: ${{ needs.release-please.outputs.release_created == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/checkout@v4
+        
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "24"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Install dependencies
+        run: npm ci
+        
       - name: Build for Deno
-        run: |
-          npm ci
-          npm run build:deno
-        if: ${{ steps.release.outputs.release_created }}
+        run: npm run build:deno
+        
       - name: Move Deno files
         run: |
           mkdir build
           mv deno build/deno
           cp deno.ts build/deno.ts
           cp {LICENSE,README.md} build
-        if: ${{ steps.release.outputs.release_created }}
+
       - name: Push to the Deno branch
-        uses: s0/git-publish-subdir-action@develop
+        uses: s0/git-publish-subdir-action@v2.6.0
         env:
           REPO: self
           BRANCH: deno
           FOLDER: ./build
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SKIP_EMPTY_COMMITS: true
-          MESSAGE: "chore: ${{ steps.release.outputs.tag_name }} release"
-          TAG: ${{ steps.release.outputs.tag_name }}-deno
-        if: ${{ steps.release.outputs.release_created }}
+          MESSAGE: "chore: ${{ needs.release-please.outputs.tag_name }} release"
+          TAG: "${{ needs.release-please.outputs.tag_name }}-deno"
+
       - name: Remove Deno folder
         run: rm -rf build
-        if: ${{ steps.release.outputs.release_created }}
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '24'
-          registry-url: 'https://registry.npmjs.org'
-        if: ${{ steps.release.outputs.release_created }}
+
       - name: Publish package to npmjs
-        run: |
-          npm ci
-          npm publish
-        if: ${{ steps.release.outputs.release_created }}
+        run: npm publish --provenance

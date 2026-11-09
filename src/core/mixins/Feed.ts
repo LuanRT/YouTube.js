@@ -8,6 +8,7 @@ import Channel from '../../parser/classes/Channel.js';
 import CompactVideo from '../../parser/classes/CompactVideo.js';
 import GridChannel from '../../parser/classes/GridChannel.js';
 import GridPlaylist from '../../parser/classes/GridPlaylist.js';
+import GridShow from '../../parser/classes/GridShow.js';
 import GridVideo from '../../parser/classes/GridVideo.js';
 import LockupView from '../../parser/classes/LockupView.js';
 import Playlist from '../../parser/classes/Playlist.js';
@@ -24,6 +25,7 @@ import Video from '../../parser/classes/Video.js';
 
 import AppendContinuationItemsAction from '../../parser/classes/actions/AppendContinuationItemsAction.js';
 import ContinuationItem from '../../parser/classes/ContinuationItem.js';
+import ContinuationItemView from '../../parser/classes/ContinuationItemView.js';
 import TwoColumnBrowseResults from '../../parser/classes/TwoColumnBrowseResults.js';
 import TwoColumnSearchResults from '../../parser/classes/TwoColumnSearchResults.js';
 import WatchCardCompactVideo from '../../parser/classes/WatchCardCompactVideo.js';
@@ -36,6 +38,7 @@ import type SectionList from '../../parser/classes/SectionList.js';
 import type SecondarySearchContainer from '../../parser/classes/SecondarySearchContainer.js';
 import type BrowseFeedActions from '../../parser/classes/BrowseFeedActions.js';
 import type ProfileColumn from '../../parser/classes/ProfileColumn.js';
+import type Message from '../../parser/classes/Message.js';
 
 export default class Feed<T extends IParsedResponse = IParsedResponse> {
   readonly #page: T;
@@ -86,18 +89,18 @@ export default class Feed<T extends IParsedResponse = IParsedResponse> {
       PlaylistVideo,
       PlaylistPanelVideo,
       WatchCardCompactVideo
-    ).filter((item) => !item.is(LockupView) || (item.content_type === 'VIDEO' || item.content_type === 'MOVIE' || item.content_type === 'SHORT')));
+    ).filter((item) => !item.is(LockupView) || (item.content_type === 'VIDEO' || item.content_type === 'MOVIE' || item.content_type === 'SHORT' || item.content_type == 'STATION')));
   }
 
   /**
    * Get all playlists on a given page via memo
    */
   static getPlaylistsFromMemo(memo: Memo) {
-    const playlists: ObservedArray<Playlist | GridPlaylist | LockupView> = memo.getType(Playlist, GridPlaylist);
+    const playlists: ObservedArray<Playlist | GridPlaylist | GridShow | LockupView> = memo.getType(Playlist, GridPlaylist, GridShow);
 
     const lockup_views = memo.getType(LockupView)
       .filter((lockup) => {
-        return [ 'PLAYLIST', 'ALBUM', 'PODCAST' ].includes(lockup.content_type);
+        return [ 'PLAYLIST', 'ALBUM', 'PODCAST', 'SHOW', 'COURSE' ].includes(lockup.content_type);
       });
 
     if (lockup_views.length > 0) {
@@ -142,7 +145,7 @@ export default class Feed<T extends IParsedResponse = IParsedResponse> {
   /**
    * Returns contents from the page.
    */
-  get page_contents(): SectionList | MusicQueue | RichGrid | ReloadContinuationItemsCommand {
+  get page_contents(): Message | SectionList | MusicQueue | RichGrid | ReloadContinuationItemsCommand {
     const tab_content = this.#memo.getType(Tab)?.[0].content;
     const reload_continuation_items = this.#memo.getType(ReloadContinuationItemsCommand)[0];
     const append_continuation_items = this.#memo.getType(AppendContinuationItemsAction)[0];
@@ -225,11 +228,11 @@ export default class Feed<T extends IParsedResponse = IParsedResponse> {
 
   #getBodyContinuations(): ObservedArray<ContinuationItem> {
     if (this.#page.header_memo) {
-      const header_continuations = this.#page.header_memo.getType(ContinuationItem);
-      return this.#memo.getType(ContinuationItem).filter(
+      const header_continuations = this.#page.header_memo.getType(ContinuationItem, ContinuationItemView);
+      return this.#memo.getType(ContinuationItem, ContinuationItemView).filter(
         (continuation) => !header_continuations.includes(continuation)
       ) as ObservedArray<ContinuationItem>;
     }
-    return this.#memo.getType(ContinuationItem);
+    return this.#memo.getType(ContinuationItem, ContinuationItemView);
   }
 }

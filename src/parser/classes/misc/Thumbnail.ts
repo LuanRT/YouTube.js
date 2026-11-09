@@ -1,14 +1,29 @@
 import type { RawNode } from '../../index.js';
 
+export interface ClientResource {
+  bundle_id?: string;
+  image_color?: number;
+  image_name?: string;
+}
+
 export default class Thumbnail {
-  url: string;
-  width: number;
-  height: number;
+  public url: string;
+  public width: number;
+  public height: number;
+  public client_resource?: ClientResource;
 
   constructor(data: RawNode) {
     this.url = data.url;
     this.width = data.width;
     this.height = data.height;
+
+    if ('clientResource' in data) {
+      this.client_resource = {
+        image_name: data.clientResource.imageName,
+        image_color: data.clientResource.imageColor,
+        bundle_id: data.clientResource.bundleId
+      };
+    }
   }
 
   /**
