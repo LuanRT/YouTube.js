@@ -1,0 +1,11 @@
+{
+  "name": "youtube-sabr-download-example",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "bgutils-js": "^4.0.3",
+    "googlevideo": "^5.0.1",
+    "jsdom": "^25.0.0",
+    "youtubei.js": "file:../.."
+  }
+}
