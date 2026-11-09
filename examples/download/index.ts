@@ -1,177 +1,178 @@
-import { createWriteStream, type WriteStream } from 'node:fs';
+import { createWriteStream, existsSync, mkdirSync } from 'node:fs';
 
-import { BG, type BgConfig } from 'bgutils-js';
 import { JSDOM } from 'jsdom';
+import { BotGuardClient } from 'bgutils-js/botguard';
+import { WebPoMinter } from 'bgutils-js/webpo';
+import type { WebPoSignalOutput } from 'bgutils-js/shared-types';
+import { buildURL, getHeaders, parseLooseJSON, USER_AGENT } from 'bgutils-js/utils';
 
-import { Constants, Innertube, Platform, UniversalCache, type Types } from 'youtubei.js';
-
-import { SabrStream, type SabrPlaybackOptions } from 'googlevideo/sabr-stream';
+import { Constants, Innertube, Platform, UniversalCache, YTNodes, type IPlayerResponse, type IRawResponse, type Types } from 'youtubei.js';
+import { SabrStream } from 'googlevideo/sabr-stream';
 import { buildSabrFormat, EnabledTrackTypes } from 'googlevideo/utils';
-import type { SabrFormat } from 'googlevideo/shared-types';
 import type { ReloadPlaybackContext } from 'googlevideo/protos';
 
-// Modern YouTube streams use the SABR protocol: instead of one downloadable URL per
-// format, the server streams media segments over a single endpoint and requires a
-// Proof of Origin (po_token). The old `yt.download()` GET flow no longer works for
-// these formats, so this example uses the `googlevideo` SABR client together with
-// YouTube.js for the player request and signature deciphering.
-
-// Deciphering the streaming URL requires executing YouTube's obfuscated player code.
-// YouTube.js does not ship a JavaScript interpreter, so we provide one here.
-// See https://ytjs.dev/guide/getting-started.html#providing-a-custom-javascript-interpreter
+// YouTube.js does not ship a JavaScript interpreter. This one deciphers stream URLs.
 Platform.shim.eval = async (data: Types.BuildScriptResult) => new Function(data.output)();
 
-/**
- * Generates a Proof of Origin token bound to the given video id using BotGuard.
- * A DOM is required because BotGuard expects a browser-like environment.
- */
-async function generatePoToken(contentBinding: string): Promise<string> {
-  const dom = new JSDOM();
-  Object.assign(globalThis, { window: dom.window, document: dom.window.document });
+const REQUEST_KEY = 'O43z0dpjhgX20SCx4KAo';
 
-  const bgConfig: BgConfig = {
-    fetch: (input, init) => fetch(input, init),
-    globalObj: globalThis,
-    identifier: contentBinding,
-    requestKey: 'O43z0dpjhgX20SCx4KAo'
-  };
+async function getWebPoMinter() {
+  const dom = new JSDOM('<!DOCTYPE html><html><body></body></html>', {
+    url: 'https://www.youtube.com',
+    referrer: 'https://www.youtube.com/',
+    userAgent: USER_AGENT
+  });
 
-  const challenge = await BG.Challenge.create(bgConfig);
+  const pageHtml = await fetch('https://www.youtube.com', {
+    headers: { 'user-agent': USER_AGENT, 'accept-language': 'en-US,en;q=0.7' }
+  }).then((response) => response.text());
+
+  const ytConfig = pageHtml.match(/ytcfg\.set\(({.+?})\);/s)?.[1];
+  const challengeJson = pageHtml.match(/window\.ytAtN\(\s*({[\s\S]*?})\s*\)/)?.[1];
+  if (!ytConfig || !challengeJson)
+    throw new Error('Could not find the BotGuard challenge on the YouTube homepage.');
+
+  dom.window.yt = { config_: JSON.parse(ytConfig) };
+  dom.window.HTMLCanvasElement.prototype.getContext = () => new Proxy({}, {
+    get: (_target, key) => {
+      if (key === 'getImageData')
+        return (_x: number, _y: number, w: number, h: number) => ({ data: new Uint8ClampedArray(w * h * 4) });
+      if (key === 'measureText')
+        return () => ({ width: 0 });
+      return () => {};
+    }
+  }) as unknown as typeof HTMLCanvasElement.prototype.getContext;
+
+  Object.assign(globalThis, {
+    yt: dom.window.yt,
+    window: dom.window,
+    document: dom.window.document,
+    location: dom.window.location,
+    origin: dom.window.origin
+  });
+
+  const challenge = (parseLooseJSON(challengeJson).R as IRawResponse).bgChallenge;
   if (!challenge)
-    throw new Error('Could not get BotGuard challenge');
+    throw new Error('Could not get the BotGuard challenge.');
 
-  const interpreterJavascript = challenge.interpreterJavascript.privateDoNotAccessOrElseSafeScriptWrappedValue;
-  if (!interpreterJavascript)
-    throw new Error('Could not load BotGuard VM');
+  const interpreterUrl = challenge.interpreterUrl.privateDoNotAccessOrElseTrustedResourceUrlWrappedValue;
+  new Function(await fetch(`https:${interpreterUrl}`).then((response) => response.text()))();
 
-  new Function(interpreterJavascript)();
-
-  const result = await BG.PoToken.generate({
+  const botguard = await BotGuardClient.create({
     program: challenge.program,
     globalName: challenge.globalName,
-    bgConfig
+    globalObject: globalThis
   });
 
-  return result.poToken ?? BG.PoToken.generatePlaceholder(contentBinding);
+  const webPoSignalOutput: WebPoSignalOutput = [];
+  const snapshot = await botguard.snapshot({ webPoSignalOutput });
+  const [ integrityToken, estimatedTtlSecs, mintRefreshThreshold, websafeFallbackToken ] =
+    await fetch(buildURL('GenerateIT', true), {
+      method: 'POST',
+      headers: getHeaders(),
+      body: JSON.stringify([ REQUEST_KEY, snapshot ])
+    }).then((response) => response.json()) as [string, number, number, string];
+
+  return WebPoMinter.create({
+    integrityToken,
+    estimatedTtlSecs,
+    mintRefreshThreshold,
+    websafeFallbackToken
+  }, webPoSignalOutput);
 }
 
-function fileExtension(mimeType: string): string {
-  if (mimeType.includes('video'))
-    return mimeType.includes('webm') ? 'webm' : 'mp4';
-  return mimeType.includes('webm') ? 'webm' : 'm4a';
-}
-
-/**
- * Creates a WritableStream that writes media chunks to disk and logs progress.
- */
-function createFileSink(format: SabrFormat, title: string): { sink: WritableStream<Uint8Array>; filePath: string } {
-  const kind = format.mimeType?.includes('video') ? 'video' : 'audio';
-  const safeTitle = title.replace(/[^a-z0-9]/gi, '_') || 'video';
-  const filePath = `${safeTitle}.${kind}.${fileExtension(format.mimeType ?? '')}`;
-
-  const output: WriteStream = createWriteStream(filePath, { flags: 'w' });
-  const totalBytes = Number(format.contentLength ?? 0);
-  let written = 0;
-
-  const sink = new WritableStream<Uint8Array>({
-    write(chunk) {
-      return new Promise((resolve, reject) => {
-        written += chunk.length;
-        const progress = totalBytes ? ` (${((written / totalBytes) * 100).toFixed(0)}%)` : '';
-        process.stdout.write(`\r${kind}: ${(written / 1024 / 1024).toFixed(2)} MB${progress}   `);
-        output.write(chunk, (err) => (err ? reject(err) : resolve()));
-      });
+async function getPlayer(yt: Innertube, videoId: string, reload?: ReloadPlaybackContext) {
+  return new YTNodes.NavigationEndpoint({ watchEndpoint: { videoId } }).call<IPlayerResponse>(yt.actions, {
+    playbackContext: {
+      contentPlaybackContext: {
+        vis: 0,
+        splay: false,
+        signatureTimestamp: yt.session.player?.signature_timestamp
+      },
+      reloadPlaybackContext: reload
     },
-    close() {
-      process.stdout.write('\n');
-      output.end();
-    }
+    contentCheckOk: true,
+    racyCheckOk: true,
+    client: 'WEB',
+    parse: true
   });
-
-  return { sink, filePath };
 }
 
-async function main() {
-  const videoId = process.argv[2] || 'dQw4w9WgXcQ';
-  const videoQuality = process.argv[3] || '720p';
-
-  const innertube = await Innertube.create({ cache: new UniversalCache(true) });
-
-  console.info(`Generating Proof of Origin token for ${videoId}...`);
-  const poToken = await generatePoToken(videoId);
-
-  const info = await innertube.getBasicInfo(videoId);
-
-  if (info.playability_status?.status !== 'OK') {
-    throw new Error(
-      `Video is not playable: ${info.playability_status?.status} ` +
-      `(${info.playability_status?.reason ?? 'no reason given'})`
-    );
-  }
-
-  const title = info.basic_info.title ?? videoId;
-  console.info(`\nTitle: ${title}`);
-
-  const serverAbrStreamingUrl = await innertube.session.player?.decipher(
-    info.streaming_data?.server_abr_streaming_url
-  );
-  const ustreamerConfig = info.player_config
+async function downloadAudio(yt: Innertube, minter: Awaited<ReturnType<typeof getWebPoMinter>>, videoId: string, filePath: string) {
+  const player = await getPlayer(yt, videoId);
+  const serverAbrStreamingUrl = await yt.session.player?.decipher(player.streaming_data?.server_abr_streaming_url);
+  const videoPlaybackUstreamerConfig = player.player_config
     ?.media_common_config.media_ustreamer_request_config?.video_playback_ustreamer_config;
 
-  if (!ustreamerConfig)
-    throw new Error('Could not find the ustreamer config in the player response.');
-  if (!serverAbrStreamingUrl)
-    throw new Error('This video has no SABR streaming URL (it may use the legacy protocol).');
+  if (!serverAbrStreamingUrl || !videoPlaybackUstreamerConfig)
+    throw new Error(`No SABR stream for ${videoId}`);
 
-  const formats = info.streaming_data?.adaptive_formats.map(buildSabrFormat) ?? [];
-
+  const clientName = Constants.CLIENT_NAME_IDS[yt.session.context.client.clientName as keyof typeof Constants.CLIENT_NAME_IDS];
   const stream = new SabrStream({
-    formats,
+    videoId,
+    formats: player.streaming_data?.adaptive_formats.map(buildSabrFormat) ?? [],
     serverAbrStreamingUrl,
-    videoPlaybackUstreamerConfig: ustreamerConfig,
-    poToken,
+    videoPlaybackUstreamerConfig,
     clientInfo: {
-      clientName: parseInt(
-        Constants.CLIENT_NAME_IDS[innertube.session.context.client.clientName as keyof typeof Constants.CLIENT_NAME_IDS]
-      ),
-      clientVersion: innertube.session.context.client.clientVersion
+      clientName: parseInt(clientName),
+      clientVersion: yt.session.context.client.clientVersion
+    },
+    callbacks: {
+      onMintPoToken: () => minter.mint(videoId),
+      onReloadPlayerResponse: async (reload) => {
+        const next = await getPlayer(yt, videoId, reload);
+        const url = await yt.session.player?.decipher(next.streaming_data?.server_abr_streaming_url);
+        const config = next.player_config?.media_common_config.media_ustreamer_request_config?.video_playback_ustreamer_config;
+        if (!url || !config)
+          throw new Error(`No SABR stream for ${videoId}`);
+        return { serverAbrStreamingUrl: url, videoPlaybackUstreamerConfig: config };
+      }
     }
   });
 
-  // The server may ask us to reload the player response (e.g. when formats expire).
-  stream.on('reloadPlayerResponse', async (_reloadPlaybackContext: ReloadPlaybackContext) => {
-    const reloaded = await innertube.getBasicInfo(videoId);
-    const url = await innertube.session.player?.decipher(reloaded.streaming_data?.server_abr_streaming_url);
-    const config = reloaded.player_config
-      ?.media_common_config.media_ustreamer_request_config?.video_playback_ustreamer_config;
-    if (url && config) {
-      stream.setStreamingURL(url);
-      stream.setUstreamerConfig(config);
-    }
+  const { audioStream } = await stream.start({
+    audioPreferences: { container: 'mp4' },
+    enabledTrackTypes: EnabledTrackTypes.AUDIO_ONLY,
+    isPostLiveDvr: !!player.video_details?.is_post_live_dvr
   });
 
-  const options: SabrPlaybackOptions = {
-    videoQuality,
-    preferMP4: true,
-    preferH264: true,
-    enabledTrackTypes: EnabledTrackTypes.VIDEO_AND_AUDIO
-  };
-
-  console.info('Starting SABR download...\n');
-  const { videoStream, audioStream, selectedFormats } = await stream.start(options);
-
-  const video = createFileSink(selectedFormats.videoFormat, title);
-  const audio = createFileSink(selectedFormats.audioFormat, title);
-
-  await Promise.all([
-    videoStream.pipeTo(video.sink),
-    audioStream.pipeTo(audio.sink)
-  ]);
-
-  console.info(`\nDone! Saved:\n  ${video.filePath}\n  ${audio.filePath}`);
+  const file = createWriteStream(filePath);
+  await audioStream.pipeTo(new WritableStream({
+    write(chunk) {
+      const bytes = new Uint8Array(chunk.buffer, chunk.byteOffset, chunk.byteLength);
+      return new Promise<void>((resolve, reject) => file.write(bytes, (err) => err ? reject(err) : resolve()));
+    },
+    close() {
+      file.end();
+    }
+  }));
 }
 
-main().catch((err) => {
-  console.error('\nDownload failed:', err);
-  process.exit(1);
-});
+(async () => {
+  const yt = await Innertube.create({ cache: new UniversalCache(false), generate_session_locally: true });
+  const minter = await getWebPoMinter();
+
+  const search = await yt.music.search('No Copyright Background Music', { type: 'album' });
+  const albumId = search.contents?.firstOfType(YTNodes.MusicShelf)?.contents?.[0]?.id;
+  if (!albumId)
+    throw new Error('No album found');
+
+  const album = await yt.music.getAlbum(albumId);
+  if (!album.contents)
+    throw new Error('Album appears to be empty');
+
+  const dir = `./${album.header?.title.toString().replace(/\//g, '')}`;
+  if (!existsSync(dir))
+    mkdirSync(dir);
+
+  console.info(`Album "${album.header?.title.toString()}"\n`);
+
+  for (const song of album.contents) {
+    const filePath = `${dir}/${song.title?.replace(/\//g, '')}.m4a`;
+    console.info(`Downloading ${song.title} (${song.id})`);
+    await downloadAudio(yt, minter, song.id as string, filePath);
+    console.info(`${song.id} - Done!\n`);
+  }
+
+  console.info('Done!');
+})();
