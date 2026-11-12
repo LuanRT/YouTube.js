@@ -441,15 +441,17 @@ export function observe<T extends YTNode>(obj: Array<T>): ObservedArray<T> {
       }
 
       if (prop == 'getAll') {
-        return (rule: object, del_items: boolean) => (
-          target.filter((obj, index) => {
-            const match = deepCompare(rule, obj);
-            if (match && del_items) {
-              target.splice(index, 1);
-            }
-            return match;
-          })
-        );
+        return (rule: object, del_items?: boolean) => {
+          const matches = target.filter((obj) => deepCompare(rule, obj));
+
+          // Remove after filtering; splicing while filtering shifts the remaining items and skips some of them.
+          if (del_items) {
+            for (const match of matches)
+              target.splice(target.indexOf(match), 1);
+          }
+
+          return matches;
+        };
       }
 
       if (prop == 'matchCondition') {
