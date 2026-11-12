@@ -1483,7 +1483,7 @@ type IYoutubeApiInnertubeUstreamerContext = {
   contentVideoUstreamerContext?: IYoutubeApiInnertubeContentVideoUstreamerContext;
 };
 
-type IYoutubeApiInnertubeChallengePrompt = {
+export type IYoutubeApiInnertubeChallengePrompt = {
   ctx?: string;
   plt?: string;
   type?:
@@ -1596,7 +1596,7 @@ export interface IRawResponse {
   onResponseReceivedActions?: RawNode[];
   onResponseReceivedEndpoints?: RawNode[];
   onResponseReceivedCommands?: RawNode[];
-  continuationContents?: RawNode;
+  continuationContents?: RawData;
   actions?: RawNode[];
   liveChatItemContextMenuSupportedRenderers?: RawNode;
   header?: RawNode;
@@ -1655,6 +1655,10 @@ export interface IRawResponse {
   frameworkUpdates?: any;
   engagementPanels?: RawNode[];
   entries?: RawNode[];
+  videoId?: string;
+  translation?: RawNode;
+  videos?: RawNode[];
+  feedbackResponses?: { isProcessed: boolean }[];
   heartbeatParams?: IRawHeartbeatParams;
   heartbeatServerData?: string;
   pollDelayMs?: string;
