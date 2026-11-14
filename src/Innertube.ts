@@ -1,6 +1,6 @@
 import Session from './core/Session.js';
 
-import { Kids, Music, Studio } from './core/clients/index.js';
+import { Charts, Kids, Music, Studio } from './core/clients/index.js';
 import { AccountManager, InteractionManager, PlaylistManager } from './core/managers/index.js';
 import { Feed, TabbedFeed } from './core/mixins/index.js';
 
@@ -595,6 +595,13 @@ export default class Innertube {
    */
   get kids() {
     return new Kids(this.#session);
+  }
+
+  /**
+   * An interface for interacting with YouTube Charts.
+   */
+  get charts() {
+    return new Charts(this.#session);
   }
 
   /**
