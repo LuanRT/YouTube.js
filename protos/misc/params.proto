@@ -278,3 +278,18 @@ message ClipParams {
 
   ClipParamsData clip_params_data = 50;
 }
+
+message CreateBackstagePostParams {
+  string channel_id = 1;
+  int32 unk_param_1 = 2;
+
+  message Field6 {
+    int32 unk_param_3 = 3;
+  }
+  Field6 f6 = 6;
+
+  message Field9 {
+    int32 unk_param_1 = 1;
+  }
+  Field9 f9 = 9;
+}

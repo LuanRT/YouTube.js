@@ -1483,7 +1483,7 @@ type IYoutubeApiInnertubeUstreamerContext = {
   contentVideoUstreamerContext?: IYoutubeApiInnertubeContentVideoUstreamerContext;
 };
 
-type IYoutubeApiInnertubeChallengePrompt = {
+export type IYoutubeApiInnertubeChallengePrompt = {
   ctx?: string;
   plt?: string;
   type?:
