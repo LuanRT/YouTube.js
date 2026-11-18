@@ -1,20 +1,32 @@
 import type {
+  IAttestationLogResponse,
   IBrowseResponse,
+  ICreateCaptionsResponse,
+  ICreateVideoResponse,
+  ICreatorPlaylistsResponse,
+  ICreatorVideosResponse,
+  IESRChallengeResponse,
+  IGetAudioWaveformUrlResponse,
   IGetChallengeResponse,
   IGetNotificationsMenuResponse,
+  IGetSessionTokenResponse,
+  IGetWebReauthURLResponse,
+  IMetadataUpdateResponse,
   INextResponse,
+  IParseCaptionsResponse,
   IParsedResponse,
   IPlayerHeartbeatResponse,
   IPlayerResponse,
   IRawResponse,
   IResolveURLResponse,
   ISearchResponse,
-  IUpdatedMetadataResponse
+  IUpdateCaptionsResponse,
+  IUpdatedMetadataResponse,
+  IUploadFeedbackResponse
 } from '../parser/index.js';
 import { NavigateAction, Parser } from '../parser/index.js';
 import { InnertubeError } from '../utils/Utils.js';
-
-import type { Session } from './index.js';
+import type { Session, PartialContext } from './index.js';
 
 export interface ApiResponse {
   success: boolean;
@@ -44,6 +56,19 @@ export type ParsedResponse<T> =
   T extends '/navigation/resolve_url' ? IResolveURLResponse :
   T extends '/notification/get_notification_menu' ? IGetNotificationsMenuResponse :
   T extends '/att/get' ? IGetChallengeResponse :
+  T extends '/att/esr' ? IESRChallengeResponse :
+  T extends '/ars/grst' ? IGetSessionTokenResponse :
+  T extends '/security/get_web_reauth_url' ? IGetWebReauthURLResponse :
+  T extends '/globalization/create_captions' ? ICreateCaptionsResponse :
+  T extends '/globalization/parse_captions' ? IParseCaptionsResponse :
+  T extends '/globalization/update_captions' ? IUpdateCaptionsResponse :
+  T extends '/video_manager/metadata_update' ? IMetadataUpdateResponse :
+  T extends '/upload/createvideo' ? ICreateVideoResponse :
+  T extends '/upload/feedback' ? IUploadFeedbackResponse :
+  T extends '/att/log' ? IAttestationLogResponse :
+  T extends '/creator/list_creator_videos' ? ICreatorVideosResponse :
+  T extends '/creator/list_creator_playlists' ? ICreatorPlaylistsResponse :
+  T extends '/video_editor/get_audio_waveform_url' ? IGetAudioWaveformUrlResponse :
   IParsedResponse;
 
 export default class Actions {
@@ -86,21 +111,24 @@ export default class Actions {
     parse: true;
     protobuf?: false;
     serialized_data?: any;
-    skip_auth_check?: boolean
+    skip_auth_check?: boolean;
+    one_time_context?: PartialContext;
   }): Promise<ParsedResponse<T>>;
   async execute<T extends InnertubeEndpoint>(endpoint: T, args?: {
     [key: string]: any;
     parse?: false;
     protobuf?: true;
     serialized_data?: any;
-    skip_auth_check?: boolean
+    skip_auth_check?: boolean;
+    one_time_context?: PartialContext;
   }): Promise<ApiResponse>;
   async execute<T extends InnertubeEndpoint>(endpoint: T, args?: {
     [key: string]: any;
     parse?: boolean;
     protobuf?: boolean;
     serialized_data?: any;
-    skip_auth_check?: boolean
+    skip_auth_check?: boolean;
+    one_time_context?: PartialContext;
   }): Promise<ParsedResponse<T> | ApiResponse> {
     let data;
 
@@ -148,6 +176,11 @@ export default class Actions {
       if (data?.client === 'YTMUSIC') {
         data.isAudioOnly = true;
       }
+
+      if (data?.client === 'WEB_CREATOR') {
+        if (!data.one_time_context) data.one_time_context = {};
+        data.one_time_context.request = { eats: this.session.eats, ...data.one_time_context?.request };
+      }
     } else if (args) {
       data = args.serialized_data;
     }
@@ -164,8 +197,11 @@ export default class Actions {
       }
     });
 
+    const response_json = await response.json();
+    if (response_json?.eats) this.session.eats = response_json.eats;
+
     if (args?.parse) {
-      let parsed_response = Parser.parseResponse<ParsedResponse<T>>(await response.json());
+      let parsed_response = Parser.parseResponse<ParsedResponse<T>>(response_json);
 
       // Handle redirects
       if (this.#isBrowse(parsed_response) && parsed_response.on_response_received_actions?.[0]?.type === 'navigateAction') {
@@ -182,7 +218,7 @@ export default class Actions {
     return {
       success: response.ok,
       status_code: response.status,
-      data: await response.json()
+      data: response_json
     };
   }
 
