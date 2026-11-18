@@ -1,4 +1,4 @@
-import { generateRandomString, InnertubeError, throwIfMissing, u8ToBase64 } from '../../utils/Utils.js';
+import { base64ToU8, generateRandomString, InnertubeError, throwIfMissing, u8ToBase64 } from '../../utils/Utils.js';
 
 import {
   Album,
@@ -29,6 +29,9 @@ import { SearchFilter } from '../../../protos/generated/misc/params.js';
 import type { ObservedArray } from '../../parser/helpers.js';
 import type { GetVideoInfoOptions, MusicSearchFilters } from '../../types/index.js';
 import type { Actions, Session } from '../index.js';
+
+// Podcast and episode searches require YouTube Music's default filter options payload.
+const DEFAULT_MUSIC_SEARCH_OPTIONS = base64ToU8('EA4QChADEAQQCRAF');
 
 export default class Music {
   #session: Session;
@@ -136,14 +139,17 @@ export default class Music {
     throwIfMissing({ query });
 
     let params: string | undefined;
+    const filter_type = filters.type;
+    const requires_options = filter_type === 'episode' || filter_type === 'podcast';
 
-    if (filters.type && filters.type !== 'all') {
+    if (filter_type && filter_type !== 'all') {
       const writer = SearchFilter.encode({
         filters: {
           musicSearchType: {
-            [filters.type]: true
+            [filter_type]: true
           }
-        }
+        },
+        options: requires_options ? DEFAULT_MUSIC_SEARCH_OPTIONS : undefined
       });
       params = encodeURIComponent(u8ToBase64(writer.finish()));
     }

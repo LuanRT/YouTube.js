@@ -37,7 +37,7 @@ export type UploadedVideoMetadataOptions = Partial<{
   is_draft: boolean;
 }>;
 
-export type MusicSearchType = 'all' | 'song' | 'video' | 'album' | 'playlist' | 'artist';
+export type MusicSearchType = 'all' | 'song' | 'video' | 'album' | 'playlist' | 'artist' | 'episode' | 'podcast';
 
 export type MusicSearchFilters = {
   type?: MusicSearchType;
