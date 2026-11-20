@@ -102,6 +102,8 @@ export default class HTTPClient {
         request_headers.set('User-Agent', Constants.CLIENTS.ANDROID_VR.USER_AGENT);
       } else if (adjustedClientName === Constants.CLIENTS.VISIONOS.NAME) {
         request_headers.set('User-Agent', Constants.CLIENTS.VISIONOS.USER_AGENT);
+      } else if (adjustedClientName === Constants.CLIENTS.TV.NAME) {
+        request_headers.set('User-Agent', Constants.CLIENTS.TV.USER_AGENT);
       }
     } else if (content_type === 'application/x-protobuf') {
       // Assume it is always an Android request.
@@ -295,7 +297,13 @@ export default class HTTPClient {
       case 'TV':
         ctx.client.clientVersion = Constants.CLIENTS.TV.VERSION;
         ctx.client.clientName = Constants.CLIENTS.TV.NAME;
+        ctx.client.deviceMake = Constants.CLIENTS.TV.DEVICE_MAKE;
+        ctx.client.deviceModel = Constants.CLIENTS.TV.DEVICE_MODEL;
+        ctx.client.osName = Constants.CLIENTS.TV.OS_NAME;
+        ctx.client.osVersion = Constants.CLIENTS.TV.OS_VERSION;
         ctx.client.userAgent = Constants.CLIENTS.TV.USER_AGENT;
+        delete ctx.client.browserName;
+        delete ctx.client.browserVersion;
         break;
       case 'TV_SIMPLY':
         ctx.client.clientVersion = Constants.CLIENTS.TV_SIMPLY.VERSION;
