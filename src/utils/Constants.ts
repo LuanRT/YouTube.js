@@ -85,8 +85,12 @@ export const CLIENTS = {
   },
   TV: {
     NAME: 'TVHTML5',
-    VERSION: '7.20260311.12.00',
-    USER_AGENT: 'Mozilla/5.0 (ChromiumStylePlatform) Cobalt/Version'
+    VERSION: '5.20260707',
+    DEVICE_MAKE: 'Samsung',
+    DEVICE_MODEL: 'UKS9800',
+    OS_NAME: 'Tizen',
+    OS_VERSION: '2.4.0',
+    USER_AGENT: 'Mozilla/5.0 (SMART-TV; Linux; Tizen 2.4.0) AppleWebKit/538.1 (KHTML, like Gecko) Version/2.4.0 TV Safari/538.1'
   },
   TV_SIMPLY: {
     NAME: 'TVHTML5_SIMPLY',
