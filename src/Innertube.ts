@@ -24,7 +24,7 @@ import NavigationEndpoint from './parser/classes/NavigationEndpoint.js';
 import type Format from './parser/classes/misc/Format.js';
 
 import * as Constants from './utils/Constants.js';
-import { generateRandomString, InnertubeError, throwIfMissing, u8ToBase64 } from './utils/Utils.js';
+import { generateRandomString, InnertubeError, parseLooseJSON, throwIfMissing, u8ToBase64 } from './utils/Utils.js';
 
 import type { ApiResponse } from './core/Actions.js';
 import type {
@@ -36,7 +36,7 @@ import type {
   InnerTubeConfig,
   SearchFilters
 } from './types/index.js';
-import type { IBrowseResponse, IParsedResponse } from './parser/index.js';
+import type { IBrowseResponse, IGetChallengeResponse, IParsedResponse, RawNode } from './parser/index.js';
 
 import {
   CommunityPostCommentsParam,
@@ -51,6 +51,7 @@ import {
   SearchFilter_Filters_UploadDate,
   SearchFilter_Prioritize
 } from '../protos/generated/misc/params.js';
+import { parseResponse } from './parser/parser.js';
 
 /**
  * Provides access to various services and modules in the YouTube API.
@@ -565,6 +566,34 @@ export default class Innertube {
       payload.ids = ids;
     
     return this.actions.execute('/att/get', { parse: true, ...payload });
+  }
+
+  /**
+   * Fetches `ytcfg` and attestation data from a YouTube page url
+   */
+  async pageConfig(page_url: string) {
+    const url = new URL(page_url);
+    const initial_data = await this.session.http.fetch(url, {
+      method: 'GET'
+    });
+    const html = await initial_data.text();
+
+    const ytcfg_regex = /ytcfg\.set\(({.+?})\);/s;
+    const attestation_data_regex = /window\.ytAtN\(\s*({[\s\S]*?})\s*\)/;
+
+    const ytcfg_string = ytcfg_regex.exec(html)?.[1];
+    const attestation_data_string = attestation_data_regex.exec(html)?.[1];
+
+    const ytcfg = ytcfg_string ? JSON.parse(ytcfg_string) as RawNode : null;
+    if (ytcfg?.EATS) this.#session.eats = ytcfg.EATS;
+
+    const yt_atn: {R: RawNode, T: string}|null = attestation_data_string ? parseLooseJSON(attestation_data_string) : null;
+    
+    return {
+      ytcfg: ytcfg,
+      atn: yt_atn?.R ? parseResponse<IGetChallengeResponse>(yt_atn.R) : null,
+      eacr_token: yt_atn ? yt_atn.T : null
+    };
   }
 
   /**
