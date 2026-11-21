@@ -20,6 +20,8 @@ interface ProcessedJsonPayload {
   clientVersion?: string;
   clientNameId?: string;
   adjustedClientName: string;
+  visitorData?: string;
+  userAgent?: string;
 }
 
 export default class HTTPClient {
@@ -80,11 +82,15 @@ export default class HTTPClient {
         isWebKids: processedIsWebKids,
         clientVersion: processedClientVersion,
         clientNameId: processedClientNameId,
-        adjustedClientName
+        adjustedClientName,
+        visitorData,
+        userAgent
       } = this.#processJsonPayload(body, session);
 
       request_body = newBody;
       is_web_kids = processedIsWebKids;
+      if (visitorData)
+        request_headers.set('X-Goog-Visitor-Id', visitorData);
 
       if (processedClientVersion) {
         request_headers.set('X-Youtube-Client-Version', processedClientVersion);
@@ -93,7 +99,9 @@ export default class HTTPClient {
         request_headers.set('X-Youtube-Client-Name', processedClientNameId);
       }
 
-      if (adjustedClientName === Constants.CLIENTS.ANDROID.NAME || adjustedClientName === Constants.CLIENTS.YTMUSIC_ANDROID.NAME) {
+      if (adjustedClientName === Constants.CLIENTS.WEB_EMBEDDED.NAME && userAgent && Platform.shim.server) {
+        request_headers.set('User-Agent', userAgent);
+      } else if (adjustedClientName === Constants.CLIENTS.ANDROID.NAME || adjustedClientName === Constants.CLIENTS.YTMUSIC_ANDROID.NAME) {
         request_headers.set('User-Agent', Constants.CLIENTS.ANDROID.USER_AGENT);
         request_headers.set('X-GOOG-API-FORMAT-VERSION', '2');
       } else if (adjustedClientName === Constants.CLIENTS.IOS.NAME) {
@@ -161,7 +169,7 @@ export default class HTTPClient {
     const parsed_payload = JSON.parse(json_body);
 
     // Deep copy since we're going to be modifying it.
-    const adjusted_context = JSON.parse(JSON.stringify(session.context)) as Context;
+    const adjusted_context = JSON.parse(JSON.stringify(parsed_payload.context || session.context)) as Context;
     this.#adjustContext(adjusted_context, parsed_payload.client);
 
     const new_payload = {
@@ -182,7 +190,9 @@ export default class HTTPClient {
       isWebKids,
       clientVersion,
       clientNameId,
-      adjustedClientName: new_payload.context.client.clientName
+      adjustedClientName: new_payload.context.client.clientName,
+      visitorData: new_payload.context.client.visitorData,
+      userAgent: new_payload.context.client.userAgent
     };
   }
 
