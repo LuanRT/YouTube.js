@@ -334,6 +334,10 @@ export default class HTTPClient {
         ctx.client.clientName = Constants.CLIENTS.WEB_CREATOR.NAME;
         ctx.client.clientVersion = Constants.CLIENTS.WEB_CREATOR.VERSION;
         break;
+      case 'WEB_MUSIC_ANALYTICS':
+        ctx.client.clientName = Constants.CLIENTS.WEB_MUSIC_ANALYTICS.NAME;
+        ctx.client.clientVersion = Constants.CLIENTS.WEB_MUSIC_ANALYTICS.VERSION;
+        break;
       default:
         break;
     }
