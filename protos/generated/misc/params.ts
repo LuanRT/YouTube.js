@@ -17,6 +17,8 @@ export interface VisitorData {
 export interface SearchFilter {
   prioritize?: SearchFilter_Prioritize | undefined;
   filters?: SearchFilter_Filters | undefined;
+  /** Opaque search options supplied by YouTube Music filter endpoints. */
+  options?: Uint8Array | undefined;
 }
 
 export enum SearchFilter_Prioritize {
@@ -76,6 +78,8 @@ export interface SearchFilter_Filters_MusicSearchType {
   album?: boolean | undefined;
   artist?: boolean | undefined;
   playlist?: boolean | undefined;
+  episode?: boolean | undefined;
+  podcast?: boolean | undefined;
 }
 
 export interface ChannelAnalytics {
@@ -334,7 +338,7 @@ export const VisitorData: MessageFns<VisitorData> = {
 };
 
 function createBaseSearchFilter(): SearchFilter {
-  return { prioritize: undefined, filters: undefined };
+  return { prioritize: undefined, filters: undefined, options: undefined };
 }
 
 export const SearchFilter: MessageFns<SearchFilter> = {
@@ -344,6 +348,9 @@ export const SearchFilter: MessageFns<SearchFilter> = {
     }
     if (message.filters !== undefined) {
       SearchFilter_Filters.encode(message.filters, writer.uint32(18).fork()).join();
+    }
+    if (message.options !== undefined) {
+      writer.uint32(106).bytes(message.options);
     }
     return writer;
   },
@@ -369,6 +376,14 @@ export const SearchFilter: MessageFns<SearchFilter> = {
           }
 
           message.filters = SearchFilter_Filters.decode(reader, reader.uint32());
+          continue;
+        }
+        case 13: {
+          if (tag !== 106) {
+            break;
+          }
+
+          message.options = reader.bytes();
           continue;
         }
       }
@@ -589,7 +604,15 @@ export const SearchFilter_Filters: MessageFns<SearchFilter_Filters> = {
 };
 
 function createBaseSearchFilter_Filters_MusicSearchType(): SearchFilter_Filters_MusicSearchType {
-  return { song: undefined, video: undefined, album: undefined, artist: undefined, playlist: undefined };
+  return {
+    song: undefined,
+    video: undefined,
+    album: undefined,
+    artist: undefined,
+    playlist: undefined,
+    episode: undefined,
+    podcast: undefined,
+  };
 }
 
 export const SearchFilter_Filters_MusicSearchType: MessageFns<SearchFilter_Filters_MusicSearchType> = {
@@ -608,6 +631,12 @@ export const SearchFilter_Filters_MusicSearchType: MessageFns<SearchFilter_Filte
     }
     if (message.playlist !== undefined) {
       writer.uint32(40).bool(message.playlist);
+    }
+    if (message.episode !== undefined) {
+      writer.uint32(72).bool(message.episode);
+    }
+    if (message.podcast !== undefined) {
+      writer.uint32(80).bool(message.podcast);
     }
     return writer;
   },
@@ -657,6 +686,22 @@ export const SearchFilter_Filters_MusicSearchType: MessageFns<SearchFilter_Filte
           }
 
           message.playlist = reader.bool();
+          continue;
+        }
+        case 9: {
+          if (tag !== 72) {
+            break;
+          }
+
+          message.episode = reader.bool();
+          continue;
+        }
+        case 10: {
+          if (tag !== 80) {
+            break;
+          }
+
+          message.podcast = reader.bool();
           continue;
         }
       }
