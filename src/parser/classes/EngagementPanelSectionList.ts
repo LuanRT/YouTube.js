@@ -4,17 +4,23 @@ import ClipSection from './ClipSection.js';
 import ContinuationItem from './ContinuationItem.js';
 import EngagementPanelTitleHeader from './EngagementPanelTitleHeader.js';
 import MacroMarkersList from './MacroMarkersList.js';
+import MacroMarkersListView from './MacroMarkersListView.js';
 import PlaylistCollaborationView from './PlaylistCollaborationView.js';
 import ProductList from './ProductList.js';
 import SectionList from './SectionList.js';
 import StructuredDescriptionContent from './StructuredDescriptionContent.js';
 import VideoAttributeView from './VideoAttributeView.js';
+import ItemSection from './ItemSection.js';
+import RichTextListView from './RichTextListView.js';
 
 export default class EngagementPanelSectionList extends YTNode {
   static type = 'EngagementPanelSectionList';
 
   public header: EngagementPanelTitleHeader | null;
-  public content: PlaylistCollaborationView | VideoAttributeView | SectionList | ContinuationItem | ClipSection | StructuredDescriptionContent | MacroMarkersList | ProductList | null;
+  public content:
+    PlaylistCollaborationView | VideoAttributeView | ItemSection | SectionList | ContinuationItem |
+    ClipSection | StructuredDescriptionContent | MacroMarkersList | MacroMarkersListView |
+    ProductList | RichTextListView | null;
   public target_id?: string;
   public panel_identifier?: string;
   public identifier?: {
@@ -27,9 +33,9 @@ export default class EngagementPanelSectionList extends YTNode {
     super();
     this.header = Parser.parseItem(data.header, EngagementPanelTitleHeader);
     this.content = Parser.parseItem(data.content, [
-      PlaylistCollaborationView, VideoAttributeView, SectionList,
+      PlaylistCollaborationView, VideoAttributeView, ItemSection, SectionList,
       ContinuationItem, ClipSection, StructuredDescriptionContent,
-      MacroMarkersList, ProductList
+      MacroMarkersList, MacroMarkersListView, ProductList, RichTextListView
     ]);
 
     this.panel_identifier = data.panelIdentifier;

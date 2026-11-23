@@ -18,6 +18,9 @@ import ItemSection from './ItemSection.js';
 import VideoTitleHeaderView from './VideoTitleHeaderView.js';
 import VideoDescriptionGamingSection from './VideoDescriptionGamingSection.js';
 import CourseProgressView from './CourseProgressView.js';
+import VideoDescriptionChannelSection from './VideoDescriptionChannelSection.js';
+import VideoDescriptionCommentsSection from './VideoDescriptionCommentsSection.js';
+import MacroMarkersListView from './MacroMarkersListView.js';
 
 export default class StructuredDescriptionContent extends YTNode {
   static type = 'StructuredDescriptionContent';
@@ -25,9 +28,10 @@ export default class StructuredDescriptionContent extends YTNode {
   public items: ObservedArray<
     VideoTitleHeaderView | VideoDescriptionHeader | VideoDescriptionGamingSection | ExpandableVideoDescriptionBody |
     VideoDescriptionMusicSection | VideoDescriptionInfocardsSection | VideoDescriptionTranscriptSection |
-    VideoDescriptionCourseSection | VideoDescriptionYouchatSectionView | HorizontalCardList | ReelShelf |
+    VideoDescriptionCourseSection | VideoDescriptionChannelSection | VideoDescriptionCommentsSection |
+    VideoDescriptionYouchatSectionView | HorizontalCardList | ReelShelf |
     VideoAttributesSectionView | HowThisWasMadeSectionView | ExpandableMetadata | MerchandiseShelf |
-    HypeFanCreditsSectionView | ItemSection | CourseProgressView
+    HypeFanCreditsSectionView | ItemSection | CourseProgressView | MacroMarkersListView
   >;
 
   constructor(data: RawNode) {
@@ -35,9 +39,10 @@ export default class StructuredDescriptionContent extends YTNode {
     this.items = Parser.parseArray(data.items, [
       VideoTitleHeaderView, VideoDescriptionHeader, VideoDescriptionGamingSection, ExpandableVideoDescriptionBody,
       VideoDescriptionMusicSection, VideoDescriptionInfocardsSection, VideoDescriptionCourseSection,
-      VideoDescriptionTranscriptSection, VideoDescriptionYouchatSectionView, HorizontalCardList, ReelShelf,
+      VideoDescriptionTranscriptSection, VideoDescriptionChannelSection, VideoDescriptionCommentsSection,
+      VideoDescriptionYouchatSectionView, HorizontalCardList, ReelShelf,
       VideoAttributesSectionView, HowThisWasMadeSectionView, ExpandableMetadata, MerchandiseShelf,
-      HypeFanCreditsSectionView, ItemSection, CourseProgressView
+      HypeFanCreditsSectionView, ItemSection, CourseProgressView, MacroMarkersListView
     ]);
   }
 }
