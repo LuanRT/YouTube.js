@@ -124,6 +124,7 @@ export { default as CopyLink } from './classes/CopyLink.js';
 export { default as CourseProgressView } from './classes/CourseProgressView.js';
 export { default as CreatePlaylistDialog } from './classes/CreatePlaylistDialog.js';
 export { default as CreatePlaylistDialogFormView } from './classes/CreatePlaylistDialogFormView.js';
+export { default as CtaCarouselItemView } from './classes/CtaCarouselItemView.js';
 export { default as DecoratedAvatarView } from './classes/DecoratedAvatarView.js';
 export { default as DecoratedPlayerBar } from './classes/DecoratedPlayerBar.js';
 export { default as DefaultPromoPanel } from './classes/DefaultPromoPanel.js';
