@@ -3,6 +3,7 @@ import { YTNode } from '../helpers.js';
 import { Parser, type RawNode } from '../index.js';
 import ThumbnailView from './ThumbnailView.js';
 import CollectionThumbnailView from './CollectionThumbnailView.js';
+import DecoratedAvatarView from './DecoratedAvatarView.js';
 import LockupMetadataView from './LockupMetadataView.js';
 import ThumbnailBottomOverlayView from './ThumbnailBottomOverlayView.js';
 import ThumbnailOverlayBadgeView from './ThumbnailOverlayBadgeView.js';
@@ -19,7 +20,7 @@ export interface LockupStyling {
 export default class LockupView extends YTNode {
   static type = 'LockupView';
 
-  public content_image: CollectionThumbnailView | ThumbnailView | null;
+  public content_image: CollectionThumbnailView | ThumbnailView | DecoratedAvatarView | null;
   public metadata: LockupMetadataView | null;
   public content_id?: string;
   public content_type: LockupContentType;
@@ -28,7 +29,7 @@ export default class LockupView extends YTNode {
 
   constructor(data: RawNode) {
     super();
-    this.content_image = Parser.parseItem(data.contentImage, [ CollectionThumbnailView, ThumbnailView ]);
+    this.content_image = Parser.parseItem(data.contentImage, [ CollectionThumbnailView, ThumbnailView, DecoratedAvatarView ]);
     this.metadata = Parser.parseItem(data.metadata, LockupMetadataView);
     this.content_id = data.contentId;
     this.content_type = data.contentType?.replace('LOCKUP_CONTENT_TYPE_', '') ?? 'UNSPECIFIED';
@@ -50,7 +51,7 @@ export default class LockupView extends YTNode {
   get duration(): { text: string; seconds: number } {
     const thumbnail = this.content_image instanceof CollectionThumbnailView
       ? this.content_image.primary_thumbnail
-      : this.content_image;
+      : this.content_image instanceof ThumbnailView ? this.content_image : null;
 
     for (const overlay of thumbnail?.overlays ?? []) {
       if (!overlay.is(ThumbnailBottomOverlayView, ThumbnailOverlayBadgeView))
