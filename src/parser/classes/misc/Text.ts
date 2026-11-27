@@ -101,11 +101,20 @@ export default class Text {
   }
 
   static fromAttributed(data: AttributedText) {
-    const {
-      content,
-      commandRuns: command_runs,
-      attachmentRuns: attachment_runs
-    } = data;
+    const { content } = data;
+
+    // Some responses (e.g. the video rows of playlist lockups in search results) count `startIndex`
+    // and `length` in UTF-8 bytes instead of UTF-16 code units, so a run covering the whole text ends
+    // past `content.length` whenever the text has non-ASCII characters (`·`, `é`...).
+    const to_utf16 = getUtf8OffsetConverter(content, [
+      ...(data.styleRuns ?? []),
+      ...(data.commandRuns ?? []),
+      ...(data.attachmentRuns ?? [])
+    ]);
+
+    const command_runs = to_utf16 ? data.commandRuns?.map((run) => convertRunOffsets(run, to_utf16)) : data.commandRuns;
+    const attachment_runs = to_utf16 ? data.attachmentRuns?.map((run) => convertRunOffsets(run, to_utf16)) : data.attachmentRuns;
+    const raw_style_runs = to_utf16 ? data.styleRuns?.map((run) => convertRunOffsets(run, to_utf16)) : data.styleRuns;
 
     const runs: RawRun[] = [
       {
@@ -118,7 +127,7 @@ export default class Text {
     // - If `startIndex` is missing, we assume the style applies from the beginning of the text
     // - If `length` is missing, we assume the style applies to the entire text
     // The following code ensures default values are provided for these properties
-    const style_runs = data.styleRuns?.map((run) => ({
+    const style_runs = raw_style_runs?.map((run) => ({
       ...run,
       startIndex: run.startIndex ?? 0,
       length: run.length ?? content.length
@@ -276,6 +285,51 @@ export default class Text {
   toString(): string {
     return this.text || 'N/A';
   }
+}
+
+/**
+ * Returns a function that maps UTF-8 byte offsets of `content` to UTF-16 indices, or `undefined` when the
+ * runs already fit `content` (UTF-16, the usual case) or do not fit its UTF-8 length either.
+ */
+function getUtf8OffsetConverter(content: string, response_runs: Partial<ResponseRun>[]): ((byte_offset: number) => number) | undefined {
+  const runEnd = (run: Partial<ResponseRun>) => (run.startIndex ?? 0) + (run.length ?? 0);
+
+  if (!response_runs.some((run) => runEnd(run) > content.length))
+    return;
+
+  // UTF-16 index of the code point each UTF-8 byte belongs to, plus the end of the text.
+  const utf16_index_of_byte: number[] = [];
+
+  for (let i = 0; i < content.length; i++) {
+    const code_point = content.codePointAt(i) as number;
+    const byte_length = code_point < 0x80 ? 1 : code_point < 0x800 ? 2 : code_point < 0x10000 ? 3 : 4;
+
+    for (let b = 0; b < byte_length; b++)
+      utf16_index_of_byte.push(i);
+
+    if (code_point > 0xFFFF)
+      i++;
+  }
+
+  utf16_index_of_byte.push(content.length);
+
+  if (response_runs.some((run) => runEnd(run) >= utf16_index_of_byte.length))
+    return;
+
+  return (byte_offset: number) => utf16_index_of_byte[byte_offset];
+}
+
+function convertRunOffsets<T extends Partial<ResponseRun>>(run: T, to_utf16: (byte_offset: number) => number): T {
+  const start = run.startIndex ?? 0;
+  const converted = { ...run };
+
+  if (run.startIndex !== undefined)
+    converted.startIndex = to_utf16(start);
+
+  if (run.length !== undefined)
+    converted.length = to_utf16(start + run.length) - to_utf16(start);
+
+  return converted;
 }
 
 function findMatchingRun(runs: RawRun[], response_run: ResponseRun) {
